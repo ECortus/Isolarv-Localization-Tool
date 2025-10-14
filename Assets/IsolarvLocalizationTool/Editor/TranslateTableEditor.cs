@@ -25,8 +25,9 @@ namespace IsolarvLocalizationTool.Editor
             
             DrawKeyVariable();
             DrawTranslationList();
-            DrawEditorVariables();
             DrawOpenEditorWindow();
+            
+            DrawEditorVariables();
             DrawTestListButton();
 
             if (EditorGUI.EndChangeCheck())
@@ -67,11 +68,6 @@ namespace IsolarvLocalizationTool.Editor
             EditorGUILayout.Space(10);
         }
         
-        void DrawEditorVariables()
-        {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("showKeyInfoInTranslation"));
-        }
-
         void DrawOpenEditorWindow()
         {
             if (GUILayout.Button("Open editor window"))
@@ -79,11 +75,16 @@ namespace IsolarvLocalizationTool.Editor
                 
             }
         }
-
-        void DrawTestListButton()
+        
+        void DrawEditorVariables()
         {
             EditorGUILayout.Space(5);
             
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("showKeyInfoInTranslation"));
+        }
+
+        void DrawTestListButton()
+        {
             if (GUILayout.Button("Paste test element into list"))
             {
                 translationProperty.ClearArray();
