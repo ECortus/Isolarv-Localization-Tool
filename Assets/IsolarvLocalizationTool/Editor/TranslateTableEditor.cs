@@ -72,7 +72,7 @@ namespace IsolarvLocalizationTool.Editor
         {
             if (GUILayout.Button("Open editor window"))
             {
-                
+                LocalizationEditorWindow.ShowWindow();
             }
         }
         
