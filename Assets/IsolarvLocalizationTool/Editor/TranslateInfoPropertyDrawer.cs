@@ -16,8 +16,10 @@ namespace IsolarvLocalizationTool.Editor
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var table = property.serializedObject.targetObject as TranslateTable;
+
+            var keyInfoProperty = property.FindPropertyRelative("localizationKey");
             
-            var keyInfo = property.FindPropertyRelative("key").boxedValue as LocalizationKey;
+            var keyInfo = keyInfoProperty.boxedValue as LocalizationKey;
             var keyLabel = new GUIContent(keyInfo.key);
             
             EditorGUI.BeginProperty(position, label, property);
@@ -29,7 +31,7 @@ namespace IsolarvLocalizationTool.Editor
             if (table.showKeyInfoInTranslation)
             {
                 GUI.enabled = false;
-                EditorGUILayout.PropertyField(property.FindPropertyRelative("key"), true);
+                EditorGUILayout.PropertyField(keyInfoProperty, true);
                 GUI.enabled = true;
             }
             

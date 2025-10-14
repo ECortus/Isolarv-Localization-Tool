@@ -27,6 +27,7 @@ namespace IsolarvLocalizationTool.Editor
             DrawTranslationList();
             DrawEditorVariables();
             DrawOpenEditorWindow();
+            DrawTestListButton();
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -65,6 +66,11 @@ namespace IsolarvLocalizationTool.Editor
             
             EditorGUILayout.Space(10);
         }
+        
+        void DrawEditorVariables()
+        {
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("showKeyInfoInTranslation"));
+        }
 
         void DrawOpenEditorWindow()
         {
@@ -74,9 +80,22 @@ namespace IsolarvLocalizationTool.Editor
             }
         }
 
-        void DrawEditorVariables()
+        void DrawTestListButton()
         {
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("showKeyInfoInTranslation"));
+            EditorGUILayout.Space(5);
+            
+            if (GUILayout.Button("Paste test element into list"))
+            {
+                translationProperty.ClearArray();
+                
+                translationProperty.InsertArrayElementAtIndex(0);
+                translationProperty.GetArrayElementAtIndex(0).boxedValue = new TranslateInfo(table.EDITOR_RelatedKeys.KeysInfo[0]);
+            }
+            
+            if (GUILayout.Button("Clear list"))
+            {
+                translationProperty.ClearArray();
+            }
         }
     }
 }

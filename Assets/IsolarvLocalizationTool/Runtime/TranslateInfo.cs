@@ -33,8 +33,13 @@ namespace IsolarvLocalizationTool.Runtime
         }
 
         #endregion
-            
-        public string localizationKey;
+
+        public TranslateInfo(LocalizationKey key)
+        {
+            localizationKey = key;
+        }
+        
+        public LocalizationKey localizationKey;
 
         public TextInfo[] text;
         public SpriteInfo[] sprite;

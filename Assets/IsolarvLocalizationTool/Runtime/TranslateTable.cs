@@ -14,6 +14,8 @@ namespace IsolarvLocalizationTool.Runtime
 #if UNITY_EDITOR
         [Header("--EDITOR--")]
         public bool showKeyInfoInTranslation = false;
+        
+        public LocalizationKeyCollection EDITOR_RelatedKeys => relatedKeys;
 #endif
     }
 }
