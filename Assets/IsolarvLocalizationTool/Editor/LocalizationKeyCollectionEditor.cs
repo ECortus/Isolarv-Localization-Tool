@@ -21,6 +21,8 @@ namespace IsolarvLocalizationTool.Editor
             
             DrawDefaultInspector();
             CollectionButtons();
+
+            DrawOpenEditorWindow();
             
             if (EditorGUI.EndChangeCheck())
             {
@@ -41,6 +43,14 @@ namespace IsolarvLocalizationTool.Editor
             }
             
             GUI.enabled = true;
+        }
+        
+        void DrawOpenEditorWindow()
+        {
+            if (GUILayout.Button("Open editor window"))
+            {
+                
+            }
         }
     }
 }
