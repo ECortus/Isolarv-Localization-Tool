@@ -1,6 +1,5 @@
 {
     "name": "IsolarvLocalizationTool.Runtime",
-    "rootNamespace": "IsolarvLocalizationTool.Runtime",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

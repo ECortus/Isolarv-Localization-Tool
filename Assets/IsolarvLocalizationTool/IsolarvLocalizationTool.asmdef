@@ -1,6 +1,5 @@
 {
     "name": "IsolarvLocalizationTool",
-    "rootNamespace": "IsolarvLocalizationTool",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

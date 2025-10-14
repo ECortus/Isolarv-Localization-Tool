@@ -1,7 +1,7 @@
 {
     "name": "IsolarvLocalizationTool.Editor",
-    "rootNamespace": "IsolarvLocalizationTool.Editor",
-    "references": [],
+    "rootNamespace": "",
+    "references": ["GUID:15969a10cae2ccd4f86386c24ebf9a6d"],
     "includePlatforms": [
         "Editor"
     ],
