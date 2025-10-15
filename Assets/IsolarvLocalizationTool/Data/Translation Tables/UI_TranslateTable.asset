@@ -13,5 +13,3 @@ MonoBehaviour:
   m_Name: UI_TranslateTable
   m_EditorClassIdentifier: 
   relatedKeys: {fileID: 11400000, guid: 8709e9edf464e6942abfbaad5845cef8, type: 2}
-  translation: []
-  showKeyInfoInTranslation: 0

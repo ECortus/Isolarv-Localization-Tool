@@ -7,15 +7,6 @@ namespace IsolarvLocalizationTool.Editor
     [CustomEditor(typeof(TranslateTable), true), CanEditMultipleObjects]
     public class TranslateTableEditor : UnityEditor.Editor
     {
-        private TranslateTable table;
-        private SerializedProperty translationProperty;
-        
-        private void OnEnable()
-        {
-            table = (TranslateTable)target;
-            translationProperty = serializedObject.FindProperty("translation");
-        }
-        
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
@@ -24,11 +15,7 @@ namespace IsolarvLocalizationTool.Editor
             DrawScript();
             
             DrawKeyVariable();
-            DrawTranslationList();
             DrawOpenEditorWindow();
-            
-            DrawEditorVariables();
-            DrawTestListButton();
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -47,55 +34,12 @@ namespace IsolarvLocalizationTool.Editor
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("relatedKeys"));
         }
-
-        void DrawTranslationList()
-        {
-            EditorGUILayout.Space(10);
-            
-            EditorGUILayout.LabelField("Translation list:", EditorStyles.boldLabel);
-            if (translationProperty.arraySize > 0)
-            {
-                for (int i = 0; i < translationProperty.arraySize; i++)
-                {
-                    EditorGUILayout.PropertyField(translationProperty.GetArrayElementAtIndex(i));
-                }
-            }
-            else
-            {
-                EditorGUILayout.LabelField("List is empty.");
-            }
-            
-            EditorGUILayout.Space(10);
-        }
         
         void DrawOpenEditorWindow()
         {
             if (GUILayout.Button("Open editor window"))
             {
                 TranslateTablesWindow.OpenWindow();
-            }
-        }
-        
-        void DrawEditorVariables()
-        {
-            EditorGUILayout.Space(5);
-            
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("showKeyInfoInTranslation"));
-        }
-
-        void DrawTestListButton()
-        {
-            if (GUILayout.Button("Paste test element into list"))
-            {
-                translationProperty.ClearArray();
-                
-                translationProperty.InsertArrayElementAtIndex(0);
-                translationProperty.GetArrayElementAtIndex(0).boxedValue = new TranslateInfo(table.EDITOR_RelatedKeys.KeysInfo[0]);
-            }
-            
-            if (GUILayout.Button("Clear list"))
-            {
-                translationProperty.ClearArray();
             }
         }
     }

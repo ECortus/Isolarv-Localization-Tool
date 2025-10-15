@@ -9,32 +9,18 @@ namespace IsolarvLocalizationTool.Runtime
     public class TranslateTable : ScriptableObject
     {
         [SerializeField] private LocalizationKeyCollection relatedKeys;
-        [SerializeField] private List<TranslateInfo> translation = new List<TranslateInfo>();
+        
+        Dictionary<string, TranslateInfo> translation = new Dictionary<string, TranslateInfo>();
 
         public bool TryGetTranslateInfo(string key, out TranslateInfo info)
         {
-            info = GetTranslateInfo(key);
-            return info != null;
-        }
-        
-        public TranslateInfo GetTranslateInfo(string key)
-        {
-            foreach (var info in translation)
+            var status = translation.TryGetValue(key, out info);
+            if (status)
             {
-                if (info.localizationKey.key == key)
-                {
-                    return info;
-                }
+                return true;
             }
             
-            return null;
+            return false;
         }
-
-#if UNITY_EDITOR
-        [Header("--EDITOR--")]
-        public bool showKeyInfoInTranslation = false;
-        
-        public LocalizationKeyCollection EDITOR_RelatedKeys => relatedKeys;
-#endif
     }
 }
