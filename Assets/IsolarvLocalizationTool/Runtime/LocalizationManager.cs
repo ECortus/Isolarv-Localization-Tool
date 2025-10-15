@@ -25,11 +25,11 @@ namespace IsolarvLocalizationTool.Runtime
                     Debug.LogError("LocalizationManager is already initialized.");
                     return;
                 }
+            
+                Instance = this;
                 
                 await LoadDataAsync();
                 DontDestroyOnLoad(this.gameObject);
-                
-                Instance = this;
             });
         }
     
@@ -71,7 +71,7 @@ namespace IsolarvLocalizationTool.Runtime
     
         public string GetTranslationText(string key)
         {
-            var languageId = LocalizationSettings.Instance.GetLanguageId();
+            var languageId = LocalizationSettings.GetLanguageId();
             foreach (var table in tables)
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
@@ -85,7 +85,7 @@ namespace IsolarvLocalizationTool.Runtime
         
         public Sprite GetTranslationSprite(string key)
         {
-            var languageId = LocalizationSettings.Instance.GetLanguageId();
+            var languageId = LocalizationSettings.GetLanguageId();
             foreach (var table in tables)
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
@@ -99,7 +99,7 @@ namespace IsolarvLocalizationTool.Runtime
         
         public Texture GetTranslationTexture(string key)
         {
-            var languageId = LocalizationSettings.Instance.GetLanguageId();
+            var languageId = LocalizationSettings.GetLanguageId();
             foreach (var table in tables)
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
@@ -113,12 +113,12 @@ namespace IsolarvLocalizationTool.Runtime
         
         event Action OnLanguageChanged;
         
-        public void AddListener(Action listener)
+        public void AddListenerOnChanged(Action listener)
         {
             OnLanguageChanged += listener;
         }
 
-        public void InvokeListeners()
+        public void InvokeListenersOnChanged()
         {
             OnLanguageChanged?.Invoke();
         }

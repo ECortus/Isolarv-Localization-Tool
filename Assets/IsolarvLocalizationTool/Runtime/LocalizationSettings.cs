@@ -6,34 +6,42 @@ namespace IsolarvLocalizationTool.Runtime
     [RequireComponent(typeof(LocalizationManager))]
     public class LocalizationSettings : MonoBehaviour
     {
-        public static LocalizationSettings Instance;
-        
-        LanguageKeyCollection languagesKey;
-        public LanguageKeyCollection GetLanguages() => languagesKey;
+        static LocalizationSettings _instance;
 
+        int _languageId;
+        
         void Awake()
         {
-            if (Instance)
+            if (_instance)
             {
                 Debug.LogError("LocalizationSettings is already initialized.");
                 return;
             }
             
-            languagesKey = LocalizationManager.Instance.GetLanguages();
-            Instance = this;
+            _instance = this;
         }
         
-        int _languageId;
-        
-        public int GetLanguageId()
+        public static int GetLanguageId()
         {
-            return _languageId;
+            if (!_instance)
+            {
+                Debug.LogError("LocalizationSettings is not initialized.");
+                return -1;
+            }
+            
+            return _instance._languageId;
         }
         
-        public bool SetLanguage(int id)
+        public static bool SetLanguage(int id)
         {
-            _languageId = id;
-            LocalizationManager.Instance.InvokeListeners();
+            if (!_instance)
+            {
+                Debug.LogError("LocalizationSettings is not initialized.");
+                return false;
+            }
+            
+            _instance._languageId = id;
+            LocalizationManager.Instance.InvokeListenersOnChanged();
             
             return true;
         }

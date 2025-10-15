@@ -15,7 +15,7 @@ namespace IsolarvLocalizationTool.Runtime.UI
         {
             var options = new List<TMP_Dropdown.OptionData>();
 
-            _languageKeys = LocalizationSettings.Instance.GetLanguages();
+            _languageKeys = LocalizationManager.Instance.GetLanguages();
             var keys = _languageKeys.GetKeys();
             
             foreach (LanguageKey key in keys)
@@ -34,7 +34,7 @@ namespace IsolarvLocalizationTool.Runtime.UI
             var key = keys[i];
 
             var id = key.id;
-            LocalizationSettings.Instance.SetLanguage(id);
+            LocalizationSettings.SetLanguage(id);
         }
 
         TMP_Dropdown.OptionData GetOptionData(LanguageKey key)
