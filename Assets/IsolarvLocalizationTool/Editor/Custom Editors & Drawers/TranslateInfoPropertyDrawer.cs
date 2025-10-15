@@ -37,15 +37,15 @@ namespace IsolarvLocalizationTool.Editor
             
             if (keyInfo.Type == LocalizationKey.KeyType.Text)
             {
-                EditorGUILayout.PropertyField(property.FindPropertyRelative("text"), true);
+                EditorGUILayout.PropertyField(property.FindPropertyRelative("Text"), true);
             }
             else if (keyInfo.Type == LocalizationKey.KeyType.Sprite)
             {
-                EditorGUILayout.PropertyField(property.FindPropertyRelative("sprite"), true);
+                EditorGUILayout.PropertyField(property.FindPropertyRelative("Sprite"), true);
             }
             else if (keyInfo.Type == LocalizationKey.KeyType.Texture)
             {
-                EditorGUILayout.PropertyField(property.FindPropertyRelative("texture"), true);
+                EditorGUILayout.PropertyField(property.FindPropertyRelative("Texture"), true);
             }
             else
             {

@@ -11,6 +11,25 @@ namespace IsolarvLocalizationTool.Runtime
         [SerializeField] private LocalizationKeyCollection relatedKeys;
         [SerializeField] private List<TranslateInfo> translation = new List<TranslateInfo>();
 
+        public bool TryGetTranslateInfo(string key, out TranslateInfo info)
+        {
+            info = GetTranslateInfo(key);
+            return info != null;
+        }
+        
+        public TranslateInfo GetTranslateInfo(string key)
+        {
+            foreach (var info in translation)
+            {
+                if (info.localizationKey.key == key)
+                {
+                    return info;
+                }
+            }
+            
+            return null;
+        }
+
 #if UNITY_EDITOR
         [Header("--EDITOR--")]
         public bool showKeyInfoInTranslation = false;

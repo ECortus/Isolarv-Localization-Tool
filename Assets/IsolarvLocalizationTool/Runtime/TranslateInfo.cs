@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
@@ -6,34 +7,6 @@ namespace IsolarvLocalizationTool.Runtime
     [Serializable]
     public class TranslateInfo
     {
-        #region Info Classes
-
-        [Serializable]
-        public abstract class LanguageInfo
-        {
-            public int languageId;
-        }
-        
-        [Serializable]
-        public class TextInfo : LanguageInfo
-        {
-            public string text;
-        }
-            
-        [Serializable]
-        public class SpriteInfo : LanguageInfo
-        {
-            public Sprite sprite;
-        }
-            
-        [Serializable]
-        public class TextureInfo : LanguageInfo
-        {
-            public Texture texture;
-        }
-
-        #endregion
-
         public TranslateInfo(LocalizationKey key)
         {
             localizationKey = key;
@@ -41,8 +14,8 @@ namespace IsolarvLocalizationTool.Runtime
         
         public LocalizationKey localizationKey;
 
-        public TextInfo[] text;
-        public SpriteInfo[] sprite;
-        public TextureInfo[] texture;
+        public Dictionary<int, string> Text = new Dictionary<int, string>();
+        public Dictionary<int, Sprite> Sprite = new Dictionary<int, Sprite>();
+        public Dictionary<int, Texture> Texture = new Dictionary<int, Texture>();
     }
 }

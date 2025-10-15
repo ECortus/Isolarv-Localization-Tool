@@ -8,5 +8,6 @@ namespace IsolarvLocalizationTool.Runtime
     public class LanguageKeyCollection : ScriptableObject
     {
         [SerializeField] private List<LanguageKey> keys = new List<LanguageKey>();
+        public List<LanguageKey> GetKeys() => keys;
     }
 }
