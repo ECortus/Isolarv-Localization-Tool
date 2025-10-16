@@ -29,7 +29,7 @@ namespace IsolarvLocalizationTool.Runtime
             
                 Instance = this;
                 
-                await LoadDataAsync();
+                // await LoadDataAsync();
                 DontDestroyOnLoad(this.gameObject);
             });
         }

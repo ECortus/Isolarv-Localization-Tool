@@ -4,9 +4,11 @@ using UnityEngine.UI;
 namespace IsolarvLocalizationTool.Runtime.Components
 {
     [RequireComponent(typeof(Image))]
-    public class LocalizeImage : BaseLocalizeComponent<Sprite>
+    public class LocalizeImage : BaseLocalizeComponent
     {
         Image _image;
+        
+        protected override LocalizationKey.KeyType keyType => LocalizationKey.KeyType.Sprite;
 
         protected override void StartLocalize()
         {
@@ -20,7 +22,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
             _image.sprite = GetLocalizedObject();
         }
         
-        protected override Sprite GetLocalizedObject()
+        Sprite GetLocalizedObject()
         {
             return LocalizationManager.Instance.GetTranslationSprite(key);
         }

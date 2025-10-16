@@ -4,9 +4,11 @@ using UnityEngine;
 namespace IsolarvLocalizationTool.Runtime.Components
 {
     [RequireComponent(typeof(TMP_Text))]
-    public class LocalizeText : BaseLocalizeComponent<string>
+    public class LocalizeText : BaseLocalizeComponent
     {
         TMP_Text _text;
+        
+        protected override LocalizationKey.KeyType keyType => LocalizationKey.KeyType.Text;
 
         protected override void StartLocalize()
         {
@@ -20,7 +22,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
             _text.text = GetLocalizedObject();
         }
         
-        protected override string GetLocalizedObject()
+        string GetLocalizedObject()
         {
             return LocalizationManager.Instance.GetTranslationText(key);
         }

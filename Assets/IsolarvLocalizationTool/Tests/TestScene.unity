@@ -277,7 +277,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &778598964
 RectTransform:
   m_ObjectHideFlags: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizationKeys: {fileID: 11400000, guid: 8709e9edf464e6942abfbaad5845cef8, type: 2}
-  keyIndex: 0
+  keyIndex: -1
 --- !u!114 &778598966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &782627987
 RectTransform:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizationKeys: {fileID: 11400000, guid: 8709e9edf464e6942abfbaad5845cef8, type: 2}
-  keyIndex: 0
+  keyIndex: -1
 --- !u!114 &782627989
 MonoBehaviour:
   m_ObjectHideFlags: 0

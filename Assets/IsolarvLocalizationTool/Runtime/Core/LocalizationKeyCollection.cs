@@ -12,12 +12,17 @@ namespace IsolarvLocalizationTool.Runtime
     {
         [SerializeField] List<LocalizationKey> keys = new List<LocalizationKey>();
 
-        public List<LocalizationKey> KeysInfo => keys;
+        public List<LocalizationKey> GetKeysInfo() => keys;
         
         public List<string> GetKeys()
         {
+            return GetKeys(keys);
+        }
+        
+        public List<string> GetKeys(List<LocalizationKey> other)
+        {
             List<string> list = new List<string>();
-            foreach (LocalizationKey key in keys)
+            foreach (LocalizationKey key in other)
             {
                 list.Add(key.key);
             }
