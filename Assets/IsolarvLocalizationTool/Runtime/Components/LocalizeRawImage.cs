@@ -11,6 +11,12 @@ namespace IsolarvLocalizationTool.Runtime.Components
         protected override void StartLocalize()
         {
             _image = GetComponent<RawImage>();
+            if (!_image)
+            {
+                Debug.LogError($"Invalid RawImage on {gameObject.name} to localize!");
+                return;
+            }
+            
             _image.texture = GetLocalizedObject();
         }
         

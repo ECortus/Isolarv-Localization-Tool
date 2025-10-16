@@ -11,6 +11,12 @@ namespace IsolarvLocalizationTool.Runtime.Components
         protected override void StartLocalize()
         {
             _image = GetComponent<Image>();
+            if (!_image)
+            {
+                Debug.LogError($"Invalid Image on {gameObject.name} to localize!");
+                return;
+            }
+            
             _image.sprite = GetLocalizedObject();
         }
         

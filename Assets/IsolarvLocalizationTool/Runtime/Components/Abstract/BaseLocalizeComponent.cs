@@ -15,6 +15,13 @@ namespace IsolarvLocalizationTool.Runtime.Components
             UniTask.Create(async () =>
             {
                 await UniTask.Yield();
+
+                if (!localizationKeys)
+                {
+                    Debug.LogError($"Invalid LocalizationKeys on {gameObject.name} to localize!");
+                    return;
+                }
+                
                 StartLocalize();
             });
         }
