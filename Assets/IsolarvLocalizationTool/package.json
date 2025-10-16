@@ -13,9 +13,5 @@
 	"description": "Common localization tool.",
 	"license": "MIT",
 	"hideInEditor": false,
-	"dependencies": 
-	{
-		"com.unity.addressables" : "2.7.4",
-		"com.unity.addressables.android" : "1.0.7"
-	}
+	"dependencies": { }
 }

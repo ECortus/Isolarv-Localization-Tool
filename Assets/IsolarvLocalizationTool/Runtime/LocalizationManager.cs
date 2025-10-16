@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -18,7 +19,7 @@ namespace IsolarvLocalizationTool.Runtime
     
         void Awake()
         {
-            Task.Run(async () =>
+            UniTask.Create(async () =>
             {
                 if (Instance)
                 {
@@ -33,13 +34,13 @@ namespace IsolarvLocalizationTool.Runtime
             });
         }
     
-        async Task LoadDataAsync()
+        async UniTask LoadDataAsync()
         {
             await LoadLanguage();
             await LoadTables();
         }
 
-        async Task LoadLanguage()
+        async UniTask LoadLanguage()
         {
             var languageTask = Addressables.LoadAssetAsync<LanguageKeyCollection>("Languages Collection");
             await languageTask.Task;
@@ -54,7 +55,7 @@ namespace IsolarvLocalizationTool.Runtime
             }
         }
         
-        async Task LoadTables()
+        async UniTask LoadTables()
         {
             var tablesTask = Addressables.LoadAssetAsync<LanguageKeyCollection>("Translation Tables");
             await tablesTask.Task;
