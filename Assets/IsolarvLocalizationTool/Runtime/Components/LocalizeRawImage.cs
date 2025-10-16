@@ -11,10 +11,10 @@ namespace IsolarvLocalizationTool.Runtime.Components
         protected override void StartLocalize()
         {
             _image = GetComponent<RawImage>();
-            _image.texture = Localize();
+            _image.texture = GetLocalizedObject();
         }
         
-        protected override Texture Localize()
+        protected override Texture GetLocalizedObject()
         {
             return LocalizationManager.Instance.GetTranslationTexture(key);
         }

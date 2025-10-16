@@ -5,7 +5,10 @@ namespace IsolarvLocalizationTool.Runtime.Components
 {
     public abstract class BaseLocalizeComponent<T> : MonoBehaviour
     {
-        [SerializeField] protected string key;
+        [SerializeField] private LocalizationKeyCollection localizationKeys;
+        [SerializeField] private int keyIndex;
+
+        protected string key => localizationKeys.KeysInfo[keyIndex].key;
         
         void Start()
         {
@@ -17,6 +20,6 @@ namespace IsolarvLocalizationTool.Runtime.Components
         }
 
         protected abstract void StartLocalize();
-        protected abstract T Localize();
+        protected abstract T GetLocalizedObject();
     }
 }

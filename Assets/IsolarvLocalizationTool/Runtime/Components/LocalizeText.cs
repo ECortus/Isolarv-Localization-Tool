@@ -11,10 +11,10 @@ namespace IsolarvLocalizationTool.Runtime.Components
         protected override void StartLocalize()
         {
             _textField = GetComponent<TMP_Text>();
-            _textField.text = Localize();
+            _textField.text = GetLocalizedObject();
         }
         
-        protected override string Localize()
+        protected override string GetLocalizedObject()
         {
             return LocalizationManager.Instance.GetTranslationText(key);
         }
