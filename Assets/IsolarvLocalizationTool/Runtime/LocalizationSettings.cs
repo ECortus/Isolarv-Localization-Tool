@@ -8,7 +8,20 @@ namespace IsolarvLocalizationTool.Runtime
     {
         static LocalizationSettings _instance;
 
-        int _languageId;
+        int languageId
+        {
+            get
+            {
+                var key = "LOCALIZATION_KEY_LANGUAGE_ID";
+                var value = PlayerPrefs.GetInt(key, 0);
+                return value;
+            }
+            set
+            {
+                var key = "LOCALIZATION_KEY_LANGUAGE_ID";
+                PlayerPrefs.SetInt(key, value);
+            }
+        }
         
         void Awake()
         {
@@ -29,7 +42,7 @@ namespace IsolarvLocalizationTool.Runtime
                 return -1;
             }
             
-            return _instance._languageId;
+            return _instance.languageId;
         }
         
         public static bool SetLanguage(int id)
@@ -40,7 +53,7 @@ namespace IsolarvLocalizationTool.Runtime
                 return false;
             }
             
-            _instance._languageId = id;
+            _instance.languageId = id;
             LocalizationManager.Instance.InvokeListenersOnChanged();
             
             return true;

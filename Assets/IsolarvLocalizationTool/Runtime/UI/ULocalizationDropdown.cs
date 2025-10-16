@@ -24,7 +24,8 @@ namespace IsolarvLocalizationTool.Runtime.UI
             }
             
             dropdown.options = options;
-            
+
+            dropdown.value = LocalizationSettings.GetLanguageId();
             dropdown.onValueChanged.AddListener(OnValueChanged);
         }
 
