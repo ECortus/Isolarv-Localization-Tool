@@ -26,14 +26,15 @@ namespace IsolarvLocalizationTool.Runtime
         
         void Start()
         {
+            Debug.Log("Initializing Addressables...");
             Addressables.InitializeAsync().Completed += (asyncOperation) =>
             {
                 if (asyncOperation.Status == AsyncOperationStatus.Succeeded)
                 {
-                    _locator = asyncOperation;
-                    
-                    InvokeListeners();
                     Debug.Log("Addressables initialized successfully.");
+                    
+                    _locator = asyncOperation;
+                    InvokeListeners();
                 }
                 else
                 {
