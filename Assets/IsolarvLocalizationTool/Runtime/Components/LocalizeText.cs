@@ -24,7 +24,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
         
         string GetLocalizedObject()
         {
-            return LocalizationManager.Instance.GetTranslationText(key);
+            return LocalizationManager.GetTranslationText(key);
         }
     }
 }

@@ -45,11 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9d1361dcb314fbd9fde42a3f7e11b62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languages: {fileID: 11400000, guid: 108f5bbaf34839c49b2548752cac7473, type: 2}
-  keys:
-  - {fileID: 11400000, guid: 8709e9edf464e6942abfbaad5845cef8, type: 2}
-  tables:
-  - {fileID: 11400000, guid: 42364a11d278b724cacaaf4608529f11, type: 2}
+  languagesReference:
+    m_AssetGUID: 108f5bbaf34839c49b2548752cac7473
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
+  tablesReference:
+  - m_AssetGUID: 42364a11d278b724cacaaf4608529f11
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_SubObjectGUID: 
+    m_EditorAssetChanged: 0
 --- !u!114 &987798671969474989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,4 +69,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5729b2e334f144468ca165430d1b35db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  languagesKey: {fileID: 11400000, guid: 108f5bbaf34839c49b2548752cac7473, type: 2}

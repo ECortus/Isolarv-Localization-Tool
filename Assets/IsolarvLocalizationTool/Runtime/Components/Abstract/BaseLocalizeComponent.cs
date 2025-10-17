@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime.Components
@@ -9,27 +10,27 @@ namespace IsolarvLocalizationTool.Runtime.Components
         [SerializeField] private int keyIndex = -1;
 
         protected string key => localizationKeys.GetKeysInfo()[keyIndex].key;
-        
-        void Start()
+
+        void Awake()
         {
-            UniTask.Create(async () =>
+            LocalizationManager.AddListenerOnInitialize(Initialize);
+        }
+
+        void Initialize()
+        {
+            if (!localizationKeys)
             {
-                await UniTask.Yield();
+                Debug.LogError($"Invalid LocalizationKeys on {gameObject.name} to localize!");
+                return;
+            }
 
-                if (!localizationKeys)
-                {
-                    Debug.LogError($"Invalid LocalizationKeys on {gameObject.name} to localize!");
-                    return;
-                }
-
-                if (keyIndex == -1)
-                {
-                    Debug.LogError($"Invalid key index on {gameObject.name} to localize!");
-                    return;
-                }
+            if (keyIndex == -1)
+            {
+                Debug.LogError($"Invalid key index on {gameObject.name} to localize!");
+                return;
+            }
                 
-                StartLocalize();
-            });
+            StartLocalize();
         }
 
         protected abstract LocalizationKey.KeyType keyType { get; }

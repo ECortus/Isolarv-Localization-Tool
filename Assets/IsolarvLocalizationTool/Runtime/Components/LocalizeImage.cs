@@ -24,7 +24,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
         
         Sprite GetLocalizedObject()
         {
-            return LocalizationManager.Instance.GetTranslationSprite(key);
+            return LocalizationManager.GetTranslationSprite(key);
         }
     }
 }

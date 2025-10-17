@@ -4,76 +4,133 @@ using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.AddressableAssets.ResourceLocators;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace IsolarvLocalizationTool.Runtime
 {
     public class LocalizationManager : MonoBehaviour
     {
-        public static LocalizationManager Instance;
+        static LocalizationManager _instance;
+        static LocalizationManager instance
+        {
+            get
+            {
+                if (!_instance)
+                    _instance = FindAnyObjectByType<LocalizationManager>();
+                return _instance;
+            }
+        }
         
-        [SerializeField] private LanguageKeyCollection languages;
-        [SerializeField] private TranslateTable[] tables;
+        [SerializeField] private AssetReference languagesReference;
+        [SerializeField] private AssetReference[] tablesReference;
         
-        public LanguageKeyCollection GetLanguages() => languages;
-    
+        LanguageKeyCollection _languages;
+        TranslateTable[] _tables;
+
+        bool _initialized = false;
+
+        #region Initialize
+
         void Awake()
         {
+            AddressableInitializer.AddListener(Initialize);
+        }
+
+        void Initialize(AsyncOperationHandle<IResourceLocator> locator)
+        {
+            Debug.Log("LocalizationManager load assets...");
+            
             UniTask.Create(async () =>
             {
-                if (Instance)
-                {
-                    Debug.LogError("LocalizationManager is already initialized.");
-                    return;
-                }
-            
-                Instance = this;
-                
-                // await LoadDataAsync();
-                DontDestroyOnLoad(this.gameObject);
+                await LoadLanguageAsync();
+                await LoadTablesAsync();
+
+                InvokeListenersOnInitialize();
             });
-        }
-    
-        async UniTask LoadDataAsync()
-        {
-            await LoadLanguage();
-            await LoadTables();
+            
+            Debug.Log("LocalizationManager successfully loaded assets and initialized.");
+            
+            DontDestroyOnLoad(this.gameObject);
         }
 
-        async UniTask LoadLanguage()
+        async UniTask LoadLanguageAsync()
         {
-            var languageTask = Addressables.LoadAssetAsync<LanguageKeyCollection>("Languages Collection");
-            await languageTask.Task;
+            var task = languagesReference.LoadAssetAsync<LanguageKeyCollection>();
+            task.Completed += (asyncOperation) =>
+            {
+                if (asyncOperation.Status == AsyncOperationStatus.Succeeded)
+                {
+                    _languages = asyncOperation.Result;
+                }
+                else
+                {
+                    Debug.LogError("Failed to load languages.");
+                }
+            };
 
-            if (languageTask.Status == AsyncOperationStatus.Succeeded)
-            {
-                
-            }
-            else
-            {
-                Debug.LogError("Failed to load languages.");
-            }
+            await task;
         }
         
-        async UniTask LoadTables()
+        async UniTask LoadTablesAsync()
         {
-            var tablesTask = Addressables.LoadAssetAsync<LanguageKeyCollection>("Translation Tables");
-            await tablesTask.Task;
+            var length = tablesReference.Length;
+            _tables = new TranslateTable[length];
 
-            if (tablesTask.Status == AsyncOperationStatus.Succeeded)
+            List<AsyncOperationHandle<TranslateTable>> tasks = new List<AsyncOperationHandle<TranslateTable>>();
+            
+            for (int i = 0; i < length; i++)
             {
+                var tableReference = tablesReference[i];
+                var index = i;
+
+                var task = tableReference.LoadAssetAsync<TranslateTable>();
+                task.Completed += (asyncOperation) =>
+                {
+                    if (asyncOperation.Status == AsyncOperationStatus.Succeeded)
+                    {
+                        _tables[index] = asyncOperation.Result;
+                    }
+                    else
+                    {
+                        Debug.LogError($"Failed to load translation table {tableReference.Asset.name}.");
+                    }
+                };
                 
+                tasks.Add(task);
             }
-            else
+            
+            for (int i = 0; i < length; i++)
             {
-                Debug.LogError("Failed to load translation tables.");
+                await tasks[i];
             }
         }
-    
-        public string GetTranslationText(string key)
+
+        #endregion
+
+        #region Get-Methods
+
+        public static LanguageKeyCollection GetLanguages()
         {
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return null;
+            }
+            
+            return instance._languages;
+        }
+    
+        public static string GetTranslationText(string key)
+        {
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return "";
+            }
+            
             var languageId = LocalizationSettings.GetLanguageId();
-            foreach (var table in tables)
+            foreach (var table in instance._tables)
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
                 {
@@ -84,10 +141,16 @@ namespace IsolarvLocalizationTool.Runtime
             return "";
         }
         
-        public Sprite GetTranslationSprite(string key)
+        public static Sprite GetTranslationSprite(string key)
         {
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return null;
+            }
+            
             var languageId = LocalizationSettings.GetLanguageId();
-            foreach (var table in tables)
+            foreach (var table in instance._tables)
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
                 {
@@ -98,10 +161,16 @@ namespace IsolarvLocalizationTool.Runtime
             return null;
         }
         
-        public Texture GetTranslationTexture(string key)
+        public static Texture GetTranslationTexture(string key)
         {
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return null;
+            }
+            
             var languageId = LocalizationSettings.GetLanguageId();
-            foreach (var table in tables)
+            foreach (var table in instance._tables)
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
                 {
@@ -111,17 +180,60 @@ namespace IsolarvLocalizationTool.Runtime
             
             return null;
         }
+
+        #endregion
+
+        #region Events
+
+        event Action OnInitialize;
+        
+        public static void AddListenerOnInitialize(Action listener)
+        {
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return;
+            }
+
+            if (_instance._initialized)
+            {
+                listener();
+                return;
+            }
+            
+            instance.OnInitialize += listener;
+        }
+
+        void InvokeListenersOnInitialize()
+        {
+            _initialized = true;
+            OnInitialize?.Invoke();
+        }
         
         event Action OnLanguageChanged;
         
-        public void AddListenerOnChanged(Action listener)
+        public static void AddListenerOnLanguageChanged(Action listener)
         {
-            OnLanguageChanged += listener;
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return;
+            }
+            
+            instance.OnLanguageChanged += listener;
         }
 
-        public void InvokeListenersOnChanged()
+        public static void InvokeListenersOnLanguageChanged()
         {
-            OnLanguageChanged?.Invoke();
+            if (!instance)
+            {
+                Debug.LogError("LocalizationManager is not initialized.");
+                return;
+            }
+            
+            instance.OnLanguageChanged?.Invoke();
         }
+
+        #endregion
     }
 }

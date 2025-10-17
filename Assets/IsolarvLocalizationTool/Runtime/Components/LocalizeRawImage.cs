@@ -24,7 +24,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
         
         Texture GetLocalizedObject()
         {
-            return LocalizationManager.Instance.GetTranslationTexture(key);
+            return LocalizationManager.GetTranslationTexture(key);
         }
     }
 }

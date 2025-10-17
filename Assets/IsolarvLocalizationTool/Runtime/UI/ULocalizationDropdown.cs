@@ -11,11 +11,16 @@ namespace IsolarvLocalizationTool.Runtime.UI
         
         LanguageKeyCollection _languageKeys;
 
-        void Start()
+        void Awake()
+        {
+            LocalizationManager.AddListenerOnInitialize(Initialize);
+        }
+
+        void Initialize()
         {
             var options = new List<TMP_Dropdown.OptionData>();
 
-            _languageKeys = LocalizationManager.Instance.GetLanguages();
+            _languageKeys = LocalizationManager.GetLanguages();
             var keys = _languageKeys.GetKeys();
             
             foreach (LanguageKey key in keys)

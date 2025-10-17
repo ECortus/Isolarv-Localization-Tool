@@ -7,6 +7,15 @@ namespace IsolarvLocalizationTool.Runtime
     public class LocalizationSettings : MonoBehaviour
     {
         static LocalizationSettings _instance;
+        static LocalizationSettings instance
+        {
+            get
+            {
+                if (!_instance)
+                    _instance = FindAnyObjectByType<LocalizationSettings>();
+                return _instance;
+            }
+        }
 
         int languageId
         {
@@ -23,38 +32,27 @@ namespace IsolarvLocalizationTool.Runtime
             }
         }
         
-        void Awake()
-        {
-            if (_instance)
-            {
-                Debug.LogError("LocalizationSettings is already initialized.");
-                return;
-            }
-            
-            _instance = this;
-        }
-        
         public static int GetLanguageId()
         {
-            if (!_instance)
+            if (!instance)
             {
                 Debug.LogError("LocalizationSettings is not initialized.");
                 return -1;
             }
             
-            return _instance.languageId;
+            return instance.languageId;
         }
         
         public static bool SetLanguage(int id)
         {
-            if (!_instance)
+            if (!instance)
             {
                 Debug.LogError("LocalizationSettings is not initialized.");
                 return false;
             }
             
-            _instance.languageId = id;
-            LocalizationManager.Instance.InvokeListenersOnChanged();
+            instance.languageId = id;
+            LocalizationManager.InvokeListenersOnLanguageChanged();
             
             return true;
         }
