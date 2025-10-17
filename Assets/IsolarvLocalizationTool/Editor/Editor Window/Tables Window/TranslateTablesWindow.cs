@@ -5,23 +5,23 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class LocalizationKeysWindow : EditorWindow
+    public class TranslateTablesWindow : EditorWindow
     {
-        [MenuItem("Tools/Isolarv/Localization Tool/Keys", false, 60)]
+        [MenuItem("Tools/Isolarv/Localization Tool/Tables", false, 65)]
         public static void ShowWindow()
         {
-            LocalizationKeysWindow wnd = OpenWindow();
-
+            TranslateTablesWindow wnd = OpenWindow();
+            
             var size = new Vector2(800, 400);
             wnd.minSize = size;
 
             wnd.Show();
         }
-
-        public static LocalizationKeysWindow OpenWindow(params Type[] desiredDockNextTo)
+        
+        public static TranslateTablesWindow OpenWindow(params Type[] desiredDockNextTo)
         {
-            LocalizationKeysWindow wnd = GetWindow<LocalizationKeysWindow>("Keys", desiredDockNextTo);
-            wnd.titleContent = EditorUtils.GetWindowTitle("Keys");
+            TranslateTablesWindow wnd = GetWindow<TranslateTablesWindow>("Tables", desiredDockNextTo);
+            wnd.titleContent = EditorUtils.GetWindowTitle("Tables");
 
             return wnd;
         }
@@ -29,11 +29,11 @@ namespace IsolarvLocalizationTool.Editor
         public void CreateGUI()
         {
             VisualElement root = rootVisualElement;
-            
+
             var visualTree =
                 AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-                    $"{EditorUtils.PACKAGE_EDITOR_PATH}/Windows/Keys Window/LocalizationKeysWindow.uxml");
-
+                    $"{EditorUtils.PACKAGE_EDITOR_PATH}/Editor Window/Tables Window/TranslateTablesWindow.uxml");
+            
             VisualElement labelFromUxml = visualTree.Instantiate();
             root.Add(labelFromUxml);
         }
