@@ -16,17 +16,18 @@
 
 .c-add-language-box Button {
     flex-grow: 1;
-    max-width: 250px;
+    max-width: none;
 }
 
 .c-language-list-view {
-    top: 50px;
-    left: 10px;
+    top: auto;
+    left: auto;
     width: 220px;
-    height: auto;
+    height: 155%;
     align-content: center;
     align-items: flex-start;
     align-self: flex-start;
+    border-top-width: 40px;
 }
 
 .c-main-label {
@@ -35,7 +36,7 @@
     font-size: 16px;
     flex-shrink: 1;
     flex-basis: auto;
-    bottom: -33px;
+    bottom: -30px;
     align-items: auto;
     align-content: auto;
     width: 130px;
