@@ -17,6 +17,12 @@ namespace IsolarvLocalizationTool.Runtime
             keys.Add(key);
             EditorUtility.SetDirty(this);
         }
+        
+        public void EDITOR_RemoveKey(int index)
+        {
+            keys.RemoveAt(index);
+            EditorUtility.SetDirty(this);
+        }
 #endif
     }
 }

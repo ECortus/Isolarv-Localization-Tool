@@ -14,7 +14,6 @@ namespace IsolarvLocalizationTool.Editor
         ObjectField _spriteField;
         
         LanguageKeyCollection _languageKeyCollection;
-        
         LanguageKeysWindow _mainWindow;
         
         public AddNewLanguage(LanguageKeyCollection languageKeyCollection, LanguageKeysWindow mainWindow)
@@ -67,19 +66,31 @@ namespace IsolarvLocalizationTool.Editor
                 _nameField.style.backgroundColor = color;
                 canAdd = false;
             }
+            
+            var sprite = _spriteField.value as Sprite;
+            if (!sprite)
+            {
+                var color = Color.red;
+                color.a = 0.5f;
+                
+                _spriteField.style.backgroundColor = color;
+                canAdd = false;
+            }
 
             if (!canAdd)
             {
                 return;
             }
             
-            var languageKey = new LanguageKey(id, keyName, _spriteField.value as Sprite);
+            var languageKey = new LanguageKey(id, keyName, sprite);
             _languageKeyCollection.EDITOR_AddNewKey(languageKey);
 
             ResetBox();
             
             _mainWindow.UpdateKeysSet();
-            _mainWindow.OnLanguageSelected(languageKey);
+
+            int index = _languageKeyCollection.GetKeys().Count - 1;
+            _mainWindow.OnLanguageSelected(index);
         }
 
         void ResetBox()
@@ -95,6 +106,7 @@ namespace IsolarvLocalizationTool.Editor
         {
             _idField.style.backgroundColor = Color.clear;
             _nameField.style.backgroundColor = Color.clear;
+            _spriteField.style.backgroundColor = Color.clear;
         }
     }
 }

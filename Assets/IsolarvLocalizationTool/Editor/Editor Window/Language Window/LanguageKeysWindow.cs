@@ -58,14 +58,14 @@ namespace IsolarvLocalizationTool.Editor
             
             VisualElement root = rootVisualElement;
 
-            UpdateKeysSet();
-
             var visualTree =
                 AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
                     $"{EditorUtils.PACKAGE_EDITOR_PATH}/Editor Window/Language Window/LanguageKeysWindow.uxml");
             
             VisualElement labelFromUxml = visualTree.Instantiate();
             root.Add(labelFromUxml);
+            
+            UpdateKeysSet();
 
             AddNewLanguageGUI();
             CreateListViewGUI();
@@ -78,8 +78,14 @@ namespace IsolarvLocalizationTool.Editor
         {
             if (_languageKeyCollection.GetKeys().Count != _lastCount)
             {
-                UpdateKeysSet();
+                UpdateOnCollectionChange();
             }
+        }
+
+        void UpdateOnCollectionChange()
+        {
+            ClearSelection();
+            UpdateKeysSet();
         }
 
         internal void UpdateKeysSet()
@@ -102,9 +108,7 @@ namespace IsolarvLocalizationTool.Editor
         
         void SwitchToCreateNewLanguageView()
         {
-            _languageListView.ClearSelection();
-            
-            _contentBox.Clear();
+            ClearSelection();
             _contentBox.Add(new AddNewLanguage(_languageKeyCollection, this));
         }
 
@@ -139,14 +143,21 @@ namespace IsolarvLocalizationTool.Editor
             if (_lastSelectedIndex == _languageListView.selectedIndex) return;
             
             _lastSelectedIndex = _languageListView.selectedIndex;
-
-            var key = _keysSet[_lastSelectedIndex];
-            OnLanguageSelected(key);
+            OnLanguageSelected(_lastSelectedIndex);
         }
 
-        internal void OnLanguageSelected(LanguageKey key)
+        internal void OnLanguageSelected(int index)
+        {
+            _languageListView.selectedIndex = index;
+            
+            _contentBox.Clear();
+            _contentBox.Add(new EditSelectedLanguage(_languageKeyCollection, index, this));
+        }
+
+        internal void ClearSelection()
         {
             _contentBox.Clear();
+            _languageListView.ClearSelection();
         }
         
         private void BindListViewItem(VisualElement listItem, int i)
