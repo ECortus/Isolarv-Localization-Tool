@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
@@ -9,5 +10,13 @@ namespace IsolarvLocalizationTool.Runtime
     {
         [SerializeField] private List<LanguageKey> keys = new List<LanguageKey>();
         public List<LanguageKey> GetKeys() => keys;
+
+#if UNITY_EDITOR
+        public void EDITOR_AddNewKey(LanguageKey key)
+        {
+            keys.Add(key);
+            EditorUtility.SetDirty(this);
+        }
+#endif
     }
 }

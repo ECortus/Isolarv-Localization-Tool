@@ -67,16 +67,31 @@ namespace IsolarvLocalizationTool.Editor
             VisualElement labelFromUxml = visualTree.Instantiate();
             root.Add(labelFromUxml);
 
-            // AddNewLanguageGUI();
+            AddNewLanguageGUI();
             CreateListViewGUI();
             CreateContentBox();
-            
-            _contentBox.Add(new AddNewLanguage());
         }
 
-        void UpdateKeysSet()
+        int _lastCount = -1;
+
+        void Update()
+        {
+            if (_languageKeyCollection.GetKeys().Count != _lastCount)
+            {
+                UpdateKeysSet();
+            }
+        }
+
+        internal void UpdateKeysSet()
         {
             _keysSet = _languageKeyCollection.GetKeys();
+            _lastCount = _keysSet.Count;
+            
+            if (_languageListView != null)
+            {
+                _languageListView.itemsSource = _keysSet;
+                _languageListView.Rebuild();
+            }
         }
 
         void AddNewLanguageGUI()
@@ -90,7 +105,7 @@ namespace IsolarvLocalizationTool.Editor
             _languageListView.ClearSelection();
             
             _contentBox.Clear();
-            _contentBox.Add(new AddNewLanguage());
+            _contentBox.Add(new AddNewLanguage(_languageKeyCollection, this));
         }
 
         void CreateListViewGUI()
@@ -129,7 +144,7 @@ namespace IsolarvLocalizationTool.Editor
             OnLanguageSelected(key);
         }
 
-        void OnLanguageSelected(LanguageKey key)
+        internal void OnLanguageSelected(LanguageKey key)
         {
             _contentBox.Clear();
         }
@@ -146,7 +161,10 @@ namespace IsolarvLocalizationTool.Editor
             nameLabel.text = key.name;
 
             var abilityImage =  mainAbilityBox.Q<UxmlImage>("Language-Image");
-            abilityImage.image = key.icon.texture;
+            if (key.icon)
+            {
+                abilityImage.image = key.icon.texture;
+            }
         }
     }
 }
