@@ -7,7 +7,7 @@ namespace IsolarvLocalizationTool.Editor
     [CustomEditor(typeof(LocalizationKeyCollection))]
     public class LocalizationKeyCollectionEditor : UnityEditor.Editor
     {
-        private LocalizationKeyCollection collection;
+        LocalizationKeyCollection collection;
         
         private void OnEnable()
         {
@@ -18,9 +18,11 @@ namespace IsolarvLocalizationTool.Editor
         {
             EditorGUI.BeginChangeCheck();
             serializedObject.Update();
+
+            DrawMainGUI();
             
-            DrawDefaultInspector();
-            CollectionButtons();
+            EditorGUILayout.Space(5);
+            DrawCollectionButtons();
 
             DrawOpenEditorWindow();
             
@@ -30,7 +32,20 @@ namespace IsolarvLocalizationTool.Editor
             }
         }
 
-        void CollectionButtons()
+        void DrawMainGUI()
+        {
+            GUI.enabled = false;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"));
+            GUI.enabled = true;
+            
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("keys"), true);
+            
+            GUI.enabled = false;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("relatedTable"));
+            GUI.enabled = true;
+        }
+
+        void DrawCollectionButtons()
         {
             if (!collection.ScanForDuplicate())
             {

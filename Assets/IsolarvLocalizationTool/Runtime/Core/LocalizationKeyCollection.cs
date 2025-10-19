@@ -11,6 +11,7 @@ namespace IsolarvLocalizationTool.Runtime
     public class LocalizationKeyCollection : ScriptableObject 
     {
         [SerializeField] List<LocalizationKey> keys = new List<LocalizationKey>();
+        [SerializeField] TranslateTable relatedTable;
 
         public List<LocalizationKey> GetKeysInfo() => keys;
         
@@ -31,7 +32,37 @@ namespace IsolarvLocalizationTool.Runtime
         }
 
 #if UNITY_EDITOR
-        
+
+        private void OnValidate()
+        {
+            ValidateTable();
+        }
+
+        void ValidateTable()
+        {
+            var tableName = name.Replace("_KeyCollection", "_TranslateTable");
+            var folder = $"{RuntimeUtils.PACKAGE_BASE_PATH}/Data/Translate Tables";
+            var path = folder + $"/{tableName}.asset";
+
+            var asset = AssetDatabase.LoadAssetAtPath<TranslateTable>(path);
+            if (!asset)
+            {
+                asset = ScriptableObject.CreateInstance<TranslateTable>();
+                AssetDatabase.CreateAsset(asset, path);
+                EditorUtility.SetDirty(asset);
+                
+                relatedTable = asset;
+                EditorUtility.SetDirty(this);
+            }
+
+            relatedTable.SetRelatedKeys(this);
+            if (relatedTable != asset)
+            {
+                relatedTable = asset;
+                EditorUtility.SetDirty(this);
+            }
+        }
+
         public int keysCount => keys.Count;
         
         public void AddKey(LocalizationKey key)

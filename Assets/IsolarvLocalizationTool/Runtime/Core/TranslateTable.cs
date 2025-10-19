@@ -30,6 +30,11 @@ namespace IsolarvLocalizationTool.Runtime
             set => _translation = value;
         }
         
+        public void SetRelatedKeys(LocalizationKeyCollection keys)
+        {
+            relatedKeys = keys;
+        }
+        
 #endif
     }
 }
