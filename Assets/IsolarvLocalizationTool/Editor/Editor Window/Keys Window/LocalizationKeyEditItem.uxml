@@ -3,6 +3,6 @@
     <ui:VisualElement style="flex-grow: 1; border-bottom-width: 15px;">
         <ui:EnumField label="Type" value="Center" type="UnityEngine.TextAlignment, UnityEngine.TextRenderingModule" name="type-field" />
         <ui:TextField label="Default key" placeholder-text="filler text" name="default-key-field" />
-        <ui:Button text="Remove from list" name="remove-button" class="c-remove-button" />
+        <ui:Button text="Remove from list" name="remove-button" class="c-remove-button" style="width: 200px;" />
     </ui:VisualElement>
 </ui:UXML>

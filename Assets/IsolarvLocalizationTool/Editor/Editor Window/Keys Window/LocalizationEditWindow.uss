@@ -19,7 +19,7 @@
     align-items: stretch;
     align-self: center;
     top: 50px;
-    height: 600px;
+    height: 500px;
     opacity: 1;
     flex-wrap: nowrap;
 }

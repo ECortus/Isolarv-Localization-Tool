@@ -12,15 +12,21 @@ namespace IsolarvLocalizationTool.Editor
             T wnd = UnityEditor.EditorWindow.GetWindow<T>(label, desiredDockNextTo);
             wnd.titleContent = EditorUtils.GetWindowTitle(label);
             
-            var size = new Vector2(800, 500);
+            var size = new Vector2(800, 600);
             wnd.minSize = size;
-            
-            var type      = typeof( UnityEditor.Editor ).Assembly.GetType( "UnityEditor.HostView" );
-            var fieldInfo = type.GetField( "k_DockedMinSize", BindingFlags.Static | BindingFlags.NonPublic );
 
-            fieldInfo!.SetValue(null, size);
+            if (desiredDockNextTo != null)
+                SetDockerSize(size);
 
             return wnd;
+        }
+
+        static void SetDockerSize(Vector2 size)
+        {
+            var type = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.HostView");
+            var fieldInfo = type.GetField("k_DockedMinSize", BindingFlags.Static | BindingFlags.NonPublic);
+
+            fieldInfo!.SetValue(null, size);
         }
 
         public static void ShowWindow<T>(string label) where T : EditorWindow
