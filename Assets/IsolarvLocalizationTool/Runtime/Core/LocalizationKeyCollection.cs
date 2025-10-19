@@ -31,6 +31,9 @@ namespace IsolarvLocalizationTool.Runtime
         }
 
 #if UNITY_EDITOR
+        
+        public int keysCount => keys.Count;
+        
         public void AddKey(LocalizationKey key)
         {
             keys.Add(key);

@@ -47,7 +47,7 @@ namespace IsolarvLocalizationTool.Editor
 
         void Update()
         {
-            if (_lastCount != _localizationKeyCollection.GetKeysInfo().Count)
+            if (_lastCount != _localizationKeyCollection.keysCount)
             {
                 UpdateScrollView();
             }
@@ -75,7 +75,7 @@ namespace IsolarvLocalizationTool.Editor
             var keysProperty = _serializedObject.FindProperty("keys");
             if (keysProperty.arraySize > 0)
             {
-                _lastCount = _localizationKeyCollection.GetKeysInfo().Count;
+                _lastCount = _localizationKeyCollection.keysCount;
                 for (int i = 0; i < keysProperty.arraySize; i++)
                 {
                     AddScrollItem(i);

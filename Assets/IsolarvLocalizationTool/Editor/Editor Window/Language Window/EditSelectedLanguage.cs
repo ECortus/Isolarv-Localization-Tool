@@ -44,7 +44,7 @@ namespace IsolarvLocalizationTool.Editor
         
         void OnRemoveButtonClicked()
         {
-            _keyCollection.EDITOR_RemoveKey(_index);
+            _keyCollection.RemoveKey(_index);
             
             _mainWindow.UpdateKeysSet();
             _mainWindow.ClearSelection();

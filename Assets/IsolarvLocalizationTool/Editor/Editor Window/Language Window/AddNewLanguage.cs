@@ -83,7 +83,7 @@ namespace IsolarvLocalizationTool.Editor
             }
             
             var languageKey = new LanguageKey(id, keyName, sprite);
-            _languageKeyCollection.EDITOR_AddNewKey(languageKey);
+            _languageKeyCollection.AddNewKey(languageKey);
 
             ResetBox();
             

@@ -12,13 +12,13 @@ namespace IsolarvLocalizationTool.Runtime
         public List<LanguageKey> GetKeys() => keys;
 
 #if UNITY_EDITOR
-        public void EDITOR_AddNewKey(LanguageKey key)
+        public void AddNewKey(LanguageKey key)
         {
             keys.Add(key);
             EditorUtility.SetDirty(this);
         }
         
-        public void EDITOR_RemoveKey(int index)
+        public void RemoveKey(int index)
         {
             keys.RemoveAt(index);
             EditorUtility.SetDirty(this);
