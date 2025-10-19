@@ -58,6 +58,11 @@ namespace IsolarvLocalizationTool.Editor
             }
             
             GUI.enabled = true;
+            
+            if (GUILayout.Button("Validate Table"))
+            {
+                collection.ValidateTable();
+            }
         }
         
         void DrawOpenEditorWindow()

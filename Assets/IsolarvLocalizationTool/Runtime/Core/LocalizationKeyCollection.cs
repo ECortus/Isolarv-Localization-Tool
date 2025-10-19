@@ -33,12 +33,7 @@ namespace IsolarvLocalizationTool.Runtime
 
 #if UNITY_EDITOR
 
-        private void OnValidate()
-        {
-            ValidateTable();
-        }
-
-        void ValidateTable()
+        public void ValidateTable()
         {
             var tableName = name.Replace("_KeyCollection", "_TranslateTable");
             var folder = $"{RuntimeUtils.PACKAGE_BASE_PATH}/Data/Translate Tables";
@@ -61,6 +56,8 @@ namespace IsolarvLocalizationTool.Runtime
                 relatedTable = asset;
                 EditorUtility.SetDirty(this);
             }
+            
+            Debug.Log($"Localization keys {name} is validated and related to table {tableName}.");
         }
 
         public int keysCount => keys.Count;

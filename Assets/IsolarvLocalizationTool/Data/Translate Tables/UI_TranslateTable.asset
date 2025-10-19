@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b119be29cc4cb4ac8b00ec89af3093, type: 3}
   m_Name: UI_TranslateTable
   m_EditorClassIdentifier: 
-  relatedKeys: {fileID: 0}
+  relatedKeys: {fileID: 11400000, guid: 8709e9edf464e6942abfbaad5845cef8, type: 2}

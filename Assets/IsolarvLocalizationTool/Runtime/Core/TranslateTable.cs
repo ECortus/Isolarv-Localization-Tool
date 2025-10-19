@@ -23,7 +23,7 @@ namespace IsolarvLocalizationTool.Runtime
         }
 
 #if UNITY_EDITOR
-        
+
         public Dictionary<string, TranslateInfo> translation
         {
             get => _translation;
@@ -35,6 +35,10 @@ namespace IsolarvLocalizationTool.Runtime
             relatedKeys = keys;
         }
         
+        public bool IsValidatedTable()
+        {
+            return relatedKeys != null;
+        }
 #endif
     }
 }

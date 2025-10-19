@@ -33,6 +33,12 @@ namespace IsolarvLocalizationTool.Editor
             {
                 _localizationKeyCollection.AddKey(new LocalizationKey("NEW-KEY", LocalizationKey.KeyType.Text));
             };
+            
+            var validateTableButton = this.Q<Button>("validate-table");
+            validateTableButton.clicked += () =>
+            {
+                _localizationKeyCollection.ValidateTable();
+            };
 
             _removeDuplicatesButton = this.Q<Button>("remove-duplicates");
             _removeDuplicatesButton.clicked += () =>
@@ -47,6 +53,11 @@ namespace IsolarvLocalizationTool.Editor
 
         void Update()
         {
+            if (!_localizationKeyCollection)
+            {
+                return;
+            }
+            
             if (_lastCount != _localizationKeyCollection.keysCount)
             {
                 UpdateScrollView();
@@ -70,6 +81,11 @@ namespace IsolarvLocalizationTool.Editor
 
         void CreateScrollView()
         {
+            if (!_localizationKeyCollection)
+            {
+                return;
+            }
+            
             _serializedObject = new SerializedObject(_localizationKeyCollection);
             
             var keysProperty = _serializedObject.FindProperty("keys");
