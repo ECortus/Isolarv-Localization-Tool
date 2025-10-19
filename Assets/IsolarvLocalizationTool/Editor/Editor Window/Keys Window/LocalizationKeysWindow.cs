@@ -12,7 +12,7 @@ namespace IsolarvLocalizationTool.Editor
         {
             LocalizationKeysWindow wnd = OpenWindow();
 
-            var size = new Vector2(800, 400);
+            var size = new Vector2(800, 500);
             wnd.minSize = size;
 
             wnd.Show();

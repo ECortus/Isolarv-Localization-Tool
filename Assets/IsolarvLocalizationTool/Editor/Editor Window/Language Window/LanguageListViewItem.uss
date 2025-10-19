@@ -24,11 +24,9 @@
     align-self: auto;
     align-content: auto;
     top: -7px;
-    left: -55px;
+    left: -45px;
     position: relative;
     -unity-text-align: upper-left;
-    background-position-x: center 0;
-    background-position-y: center 0;
     height: auto;
     flex-shrink: 0;
 }
@@ -39,5 +37,6 @@
     align-content: auto;
     justify-content: flex-start;
     align-items: flex-start;
-    left: -15px;
+    left: auto;
+    width: 200px;
 }

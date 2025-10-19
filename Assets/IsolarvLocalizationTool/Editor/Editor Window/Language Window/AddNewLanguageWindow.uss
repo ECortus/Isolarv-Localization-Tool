@@ -34,7 +34,11 @@
 }
 
 .c-add-new-language-button {
-    align-self: flex-start;
+    align-self: flex-end;
     width: 50%;
     top: 10px;
+    height: 25px;
+    font-size: 13px;
+    -unity-text-align: middle-center;
+    align-items: center;
 }
