@@ -31,6 +31,18 @@ namespace IsolarvLocalizationTool.Runtime
         }
 
 #if UNITY_EDITOR
+        public void AddKey(LocalizationKey key)
+        {
+            keys.Add(key);
+            EditorUtility.SetDirty(this);
+        }
+        
+        public void RemoveKey(int index)
+        {
+            keys.RemoveAt(index);
+            EditorUtility.SetDirty(this);
+        }
+        
         public bool ScanForDuplicate()
         {
             HashSet<string> unique = new HashSet<string>(GetKeys());
@@ -42,7 +54,7 @@ namespace IsolarvLocalizationTool.Runtime
             return false;
         }
         
-        public void RemoveDuplicate()
+        public void RemoveDuplicates()
         {
             HashSet<string> unique = new HashSet<string>(GetKeys());
             for (int i = 0; i < keys.Count; i++)

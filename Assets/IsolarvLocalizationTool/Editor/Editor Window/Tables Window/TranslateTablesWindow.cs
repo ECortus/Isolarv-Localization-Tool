@@ -10,20 +10,12 @@ namespace IsolarvLocalizationTool.Editor
         [MenuItem("Tools/Isolarv/Localization Tool/Tables", false, 65)]
         public static void ShowWindow()
         {
-            TranslateTablesWindow wnd = OpenWindow();
-            
-            var size = new Vector2(800, 500);
-            wnd.minSize = size;
-
-            wnd.Show();
+            EditorWindowUtils.ShowWindow<TranslateTablesWindow>("Tables");
         }
         
-        public static TranslateTablesWindow OpenWindow(params Type[] desiredDockNextTo)
+        public static void OpenWindow(params Type[] desiredDockNextTo)
         {
-            TranslateTablesWindow wnd = GetWindow<TranslateTablesWindow>("Tables", desiredDockNextTo);
-            wnd.titleContent = EditorUtils.GetWindowTitle("Tables");
-
-            return wnd;
+            EditorWindowUtils.OpenWindow<TranslateTablesWindow>("Tables", desiredDockNextTo);
         }
 
         public void CreateGUI()

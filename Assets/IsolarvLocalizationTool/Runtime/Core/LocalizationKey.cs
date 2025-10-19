@@ -6,6 +6,12 @@ namespace IsolarvLocalizationTool.Runtime
     [Serializable]
     public class LocalizationKey
     {
+        public LocalizationKey(string key, KeyType type)
+        {
+            defaultKey = key;
+            this.type = type;
+        }
+        
         public enum KeyType
         {
             Text, Sprite, Texture

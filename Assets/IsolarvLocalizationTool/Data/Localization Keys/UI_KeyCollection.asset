@@ -16,10 +16,10 @@ MonoBehaviour:
   - type: 0
     defaultKey: Resume_Button
   - type: 0
-    defaultKey: Settings_Button
-  - type: 0
     defaultKey: Exit_Button
   - type: 0
     defaultKey: NewGame_Button
   - type: 0
     defaultKey: ContinueGame_Button
+  - type: 0
+    defaultKey: Settings_Button

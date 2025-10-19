@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -31,6 +32,20 @@ namespace IsolarvLocalizationTool.Editor
             if(!_toolIcon)
                 _toolIcon = AssetDatabase.LoadAssetAtPath<Texture>($"{PACKAGE_BASE_PATH}/Sprites/icon.png");
             return new GUIContent(windowName, _toolIcon);
+        }
+
+        public static T[] LoadAllAssetsInFolder<T>(string folder) where T : Object
+        {
+            string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name, new[] { folder });
+            T[] assets = new T[guids.Length];
+            
+            for (int i = 0; i < guids.Length; i++)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
+                assets[i] = AssetDatabase.LoadAssetAtPath<T>(assetPath);
+            }
+            
+            return assets;
         }
     }
 }

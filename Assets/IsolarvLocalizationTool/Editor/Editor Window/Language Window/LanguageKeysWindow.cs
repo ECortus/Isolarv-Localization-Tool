@@ -28,27 +28,18 @@ namespace IsolarvLocalizationTool.Editor
             LocalizationKeysWindow.OpenWindow(typeof(LanguageKeysWindow));
             TranslateTablesWindow.OpenWindow(typeof(LanguageKeysWindow));
             
-            LanguageKeysWindow wnd = GetWindow<LanguageKeysWindow>("Languages");
-            wnd.Focus();
+            EditorWindowUtils.FocusWindow<LanguageKeysWindow>("Languages");
         }
         
         [MenuItem("Tools/Isolarv/Localization Tool/Languages", false, 55)]
         public static void ShowWindow()
         {
-            LanguageKeysWindow wnd = OpenWindow();
-            
-            var size = new Vector2(800, 500);
-            wnd.minSize = size;
-
-            wnd.Show();
+            EditorWindowUtils.ShowWindow<LanguageKeysWindow>("Languages");
         }
 
-        public static LanguageKeysWindow OpenWindow(params Type[] desiredDockNextTo)
+        public static void OpenWindow(params Type[] desiredDockNextTo)
         {
-            LanguageKeysWindow wnd = GetWindow<LanguageKeysWindow>("Languages", desiredDockNextTo);
-            wnd.titleContent = EditorUtils.GetWindowTitle("Languages");
-
-            return wnd;
+            EditorWindowUtils.OpenWindow<LanguageKeysWindow>("Languages", desiredDockNextTo);
         }
 
         public void CreateGUI()
@@ -135,7 +126,7 @@ namespace IsolarvLocalizationTool.Editor
             _contentBox = rootVisualElement.Q<GroupBox>("content-box");
         }
         
-        private static int _lastSelectedIndex = -1;
+        int _lastSelectedIndex = -1;
         
         private void ListViewSelectionChanged(IEnumerable<object> objects)
         {

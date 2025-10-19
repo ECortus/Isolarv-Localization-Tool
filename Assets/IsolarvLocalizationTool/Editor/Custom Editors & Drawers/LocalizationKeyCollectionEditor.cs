@@ -39,7 +39,7 @@ namespace IsolarvLocalizationTool.Editor
             
             if (GUILayout.Button("Remove duplicates"))
             {
-                collection.RemoveDuplicate();
+                collection.RemoveDuplicates();
             }
             
             GUI.enabled = true;
