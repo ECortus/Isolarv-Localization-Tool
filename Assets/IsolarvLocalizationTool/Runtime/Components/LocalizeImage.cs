@@ -10,7 +10,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
         
         protected override LocalizationKey.KeyType keyType => LocalizationKey.KeyType.Sprite;
 
-        protected override void StartLocalize()
+        protected override void Localize()
         {
             _image = GetComponent<Image>();
             if (!_image)

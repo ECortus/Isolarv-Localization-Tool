@@ -10,7 +10,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
         
         protected override LocalizationKey.KeyType keyType => LocalizationKey.KeyType.Text;
 
-        protected override void StartLocalize()
+        protected override void Localize()
         {
             _text = GetComponent<TMP_Text>();
             if (!_text)

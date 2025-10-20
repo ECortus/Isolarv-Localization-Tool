@@ -54,21 +54,31 @@ namespace IsolarvLocalizationTool.Editor
             }
             
             var keysInfo = keysCollection.GetKeysInfo();
-            // keysInfo = keysInfo.Where(key => key.Type == _component.EDITOR_KeyType).ToList();
-            // if (keysInfo.Count == 0)
-            // {
-            //     EditorGUILayout.LabelField($"No keys of {_component.EDITOR_KeyType} type in collection", EditorStyles.boldLabel);
-            //     _keyIndexProperty.intValue = -1;
-            //     
-            //     serializedObject.ApplyModifiedProperties();
-            //     
-            //     return;
-            // }
-            
+            keysInfo = keysInfo.Where(key => key.Type == _component.EDITOR_KeyType).ToList();
+            if (keysInfo.Count == 0)
+            {
+                EditorGUILayout.LabelField($"No keys of {_component.EDITOR_KeyType} type in collection", EditorStyles.boldLabel);
+                _keyIndexProperty.intValue = -1;
+                
+                serializedObject.ApplyModifiedProperties();
+                
+                return;
+            }
+
+            int indexInCorrected = 0;
             var keys = keysCollection.GetKeys(keysInfo);
             
-            var index = EditorGUILayout.Popup("Selected key", _keyIndexProperty.intValue, keys.ToArray());
-            _keyIndexProperty.intValue = index;
+            if (_keyIndexProperty.intValue != -1)
+            {
+                var indexInFull = keysCollection.GetKeys()[_keyIndexProperty.intValue];
+                indexInCorrected = keys.IndexOf(indexInFull);
+            }
+            
+            var index = EditorGUILayout.Popup("Selected key", indexInCorrected, keys.ToArray());
+            var key = keys[index];
+            
+            var correctedIndex = keysCollection.GetIndexOfKey(key);
+            _keyIndexProperty.intValue = correctedIndex;
         }
     }
 }

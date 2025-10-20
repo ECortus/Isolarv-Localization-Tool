@@ -10,7 +10,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
         
         protected override LocalizationKey.KeyType keyType => LocalizationKey.KeyType.Texture;
 
-        protected override void StartLocalize()
+        protected override void Localize()
         {
             _image = GetComponent<RawImage>();
             if (!_image)

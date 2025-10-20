@@ -73,6 +73,20 @@ namespace IsolarvLocalizationTool.Runtime
             Debug.LogError($"Localization key with id {key} not found.");
             return null;
         }
+
+        public int GetIndexOfKey(string key)
+        {
+            for (int i = 0; i < keys.Count; i++)
+            {
+                if (keys[i].key == key)
+                {
+                    return i;
+                }
+            }
+            
+            Debug.LogError($"Localization key with id {key} not found.");
+            return -1;
+        }
         
         public TranslateTable GetTable() => relatedTable;
 

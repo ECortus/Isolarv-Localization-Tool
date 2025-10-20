@@ -30,12 +30,13 @@ namespace IsolarvLocalizationTool.Runtime.Components
                 return;
             }
                 
-            StartLocalize();
+            Localize();
+            LocalizationManager.AddListenerOnLanguageChanged(Localize);
         }
 
         protected abstract LocalizationKey.KeyType keyType { get; }
 
-        protected abstract void StartLocalize();
+        protected abstract void Localize();
 
 #if UNITY_EDITOR
         public LocalizationKey.KeyType EDITOR_KeyType => keyType;
