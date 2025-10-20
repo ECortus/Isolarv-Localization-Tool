@@ -1,4 +1,5 @@
-﻿using IsolarvLocalizationTool.Runtime;
+﻿using Cysharp.Threading.Tasks;
+using IsolarvLocalizationTool.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,8 +7,14 @@ namespace IsolarvLocalizationTool.Editor
 {
     public static class LocalizationToolsCommand
     {
-        [MenuItem("Tools/Isolarv/Localization Tool/Validate all localization keys", false, 105)]
-        public static void ValidateLocalizationKeys()
+        [MenuItem("Tools/Isolarv/Localization Tool/Validate all tables", false, 115)]
+        public static async void ValidateAllTables()
+        {
+            await ValidateByTables();
+            await ValidateByKeys();
+        }
+
+        static async UniTask ValidateByKeys()
         {
             var keys = AssetDatabase.FindAssets("t:LocalizationKeyCollection", new string[] 
                 { $"{EditorUtils.PACKAGE_BASE_PATH}/Data/Localization Keys" });
@@ -18,11 +25,12 @@ namespace IsolarvLocalizationTool.Editor
                 var asset = AssetDatabase.LoadAssetAtPath<LocalizationKeyCollection>(path);
                 
                 asset.ValidateTable();
+                
+                await UniTask.Yield();
             }
         }
-        
-        [MenuItem("Tools/Isolarv/Localization Tool/Validate all tables", false, 115)]
-        public static void ValidateTable()
+
+        static async UniTask ValidateByTables()
         {
             var tables = AssetDatabase.FindAssets("t:TranslateTable", new string[] 
                 { $"{EditorUtils.PACKAGE_BASE_PATH}/Data/Translate Tables" });
@@ -38,8 +46,11 @@ namespace IsolarvLocalizationTool.Editor
                 }
                 else
                 {
+                    EditorWindowUtils.ValidateTable(asset);
                     Debug.Log($"Table {path} is validated.");
                 }
+                
+                await UniTask.Yield();
             }
         }
     }

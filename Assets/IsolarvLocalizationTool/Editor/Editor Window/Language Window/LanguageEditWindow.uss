@@ -22,6 +22,10 @@
     height: 500px;
     opacity: 1;
     flex-wrap: nowrap;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .c-content-label {
@@ -31,6 +35,10 @@
 }
 
 .c-fields-box {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 .c-add-new-language-button {

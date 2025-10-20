@@ -54,16 +54,16 @@ namespace IsolarvLocalizationTool.Editor
             }
             
             var keysInfo = keysCollection.GetKeysInfo();
-            keysInfo = keysInfo.Where(key => key.Type == _component.EDITOR_KeyType).ToList();
-            if (keysInfo.Count == 0)
-            {
-                EditorGUILayout.LabelField($"No keys of {_component.EDITOR_KeyType} type in collection", EditorStyles.boldLabel);
-                _keyIndexProperty.intValue = -1;
-                
-                serializedObject.ApplyModifiedProperties();
-                
-                return;
-            }
+            // keysInfo = keysInfo.Where(key => key.Type == _component.EDITOR_KeyType).ToList();
+            // if (keysInfo.Count == 0)
+            // {
+            //     EditorGUILayout.LabelField($"No keys of {_component.EDITOR_KeyType} type in collection", EditorStyles.boldLabel);
+            //     _keyIndexProperty.intValue = -1;
+            //     
+            //     serializedObject.ApplyModifiedProperties();
+            //     
+            //     return;
+            // }
             
             var keys = keysCollection.GetKeys(keysInfo);
             

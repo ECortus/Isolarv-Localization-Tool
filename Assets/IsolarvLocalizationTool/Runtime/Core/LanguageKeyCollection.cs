@@ -12,6 +12,9 @@ namespace IsolarvLocalizationTool.Runtime
         public List<LanguageKey> GetKeys() => keys;
 
 #if UNITY_EDITOR
+        
+        public int keysCount => keys.Count;
+        
         public void AddNewKey(LanguageKey key)
         {
             keys.Add(key);
@@ -22,6 +25,33 @@ namespace IsolarvLocalizationTool.Runtime
         {
             keys.RemoveAt(index);
             EditorUtility.SetDirty(this);
+        }
+
+        public LanguageKey GetKeyByID(int id)
+        {
+            for (int i = 0; i < keys.Count; i++)
+            {
+                if (keys[i].id == id)
+                {
+                    return keys[i];
+                }
+            }
+            
+            Debug.LogError($"Language key with id {id} not found.");
+            return null;
+        }
+
+        public bool ContainKeyById(int id)
+        {
+            for (int i = 0; i < keys.Count; i++)
+            {
+                if (keys[i].id == id)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
         }
 #endif
     }

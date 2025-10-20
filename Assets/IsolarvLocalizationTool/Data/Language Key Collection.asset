@@ -31,6 +31,3 @@ MonoBehaviour:
   - id: 5
     name: American
     icon: {fileID: 21300000, guid: 57338909f476f1643997d2946d944412, type: 3}
-  - id: 7
-    name: Iceland
-    icon: {fileID: 21300000, guid: 1634073bb99a5a34da51b772656154a1, type: 3}

@@ -8,23 +8,56 @@ namespace IsolarvLocalizationTool.Runtime
     public class TranslateTable : ScriptableObject
     {
         [SerializeField] private LocalizationKeyCollection relatedKeys;
+
+        [Serializable]
+        public class TranslationKey
+        {
+            [SerializeField] string key;
+            [SerializeField] TranslateInfo translateInfo;
+            
+            public TranslationKey(string key, TranslateInfo translateInfo)
+            {
+                this.key = key;
+                this.translateInfo = translateInfo;
+            }
+
+            public bool TryGetValue(string compareKey, out TranslateInfo info)
+            {
+                if (key == compareKey)
+                {
+                    info = translateInfo;
+                    return true;
+                }
+
+                info = null;
+                return false;
+            }
+
+#if UNITY_EDITOR
+            public string GetKey() => key;
+            public TranslateInfo GetTranslateInfo() => translateInfo;
+#endif
+        }
         
-        Dictionary<string, TranslateInfo> _translation = new Dictionary<string, TranslateInfo>();
+        [SerializeField] List<TranslationKey> _translation = new List<TranslationKey>();
 
         public bool TryGetTranslateInfo(string key, out TranslateInfo info)
         {
-            var status = _translation.TryGetValue(key, out info);
-            if (status)
+            foreach (var translationKey in _translation)
             {
-                return true;
+                if (translationKey.TryGetValue(key, out info))
+                {
+                    return true;
+                }
             }
-            
+
+            info = null;
             return false;
         }
 
 #if UNITY_EDITOR
 
-        public Dictionary<string, TranslateInfo> translation
+        public List<TranslationKey> translation
         {
             get => _translation;
             set => _translation = value;
@@ -34,6 +67,8 @@ namespace IsolarvLocalizationTool.Runtime
         {
             relatedKeys = keys;
         }
+        
+        public LocalizationKeyCollection GetRelatedKeys() => relatedKeys;
         
         public bool IsValidatedTable()
         {

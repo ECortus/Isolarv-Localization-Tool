@@ -134,10 +134,11 @@ namespace IsolarvLocalizationTool.Runtime
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
                 {
-                    return info.Text[languageId];
+                    return info.GetText(languageId);
                 }
             }
             
+            Debug.LogError($"Translation key {key} not found.");
             return "";
         }
         
@@ -154,10 +155,11 @@ namespace IsolarvLocalizationTool.Runtime
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
                 {
-                    return info.Sprite[languageId];
+                    return info.GetSprite(languageId);
                 }
             }
             
+            Debug.LogError($"Translation key {key} not found.");
             return null;
         }
         
@@ -174,10 +176,11 @@ namespace IsolarvLocalizationTool.Runtime
             {
                 if (table.TryGetTranslateInfo(key, out TranslateInfo info))
                 {
-                    return info.Texture[languageId];
+                    return info.GetTexture(languageId);
                 }
             }
             
+            Debug.LogError($"Translation key {key} not found.");
             return null;
         }
 

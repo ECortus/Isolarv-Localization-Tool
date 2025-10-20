@@ -59,6 +59,22 @@ namespace IsolarvLocalizationTool.Runtime
             
             Debug.Log($"Localization keys {name} is validated and related to table {tableName}.");
         }
+        
+        public LocalizationKey GetKey(string key)
+        {
+            for (int i = 0; i < keys.Count; i++)
+            {
+                if (keys[i].key == key)
+                {
+                    return keys[i];
+                }
+            }
+            
+            Debug.LogError($"Localization key with id {key} not found.");
+            return null;
+        }
+        
+        public TranslateTable GetTable() => relatedTable;
 
         public int keysCount => keys.Count;
         

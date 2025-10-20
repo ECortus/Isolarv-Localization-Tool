@@ -1,4 +1,5 @@
-﻿using IsolarvLocalizationTool.Runtime;
+﻿using System;
+using IsolarvLocalizationTool.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,13 @@ namespace IsolarvLocalizationTool.Editor
     [CustomEditor(typeof(TranslateTable), true), CanEditMultipleObjects]
     public class TranslateTableEditor : UnityEditor.Editor
     {
+        TranslateTable _translateTable;
+
+        private void OnEnable()
+        {
+            _translateTable = target as TranslateTable;
+        }
+
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
@@ -15,6 +23,8 @@ namespace IsolarvLocalizationTool.Editor
             DrawScript();
             
             DrawKeyVariable();
+            DrawDebugButtons();
+            
             DrawOpenEditorWindow();
 
             if (EditorGUI.EndChangeCheck())
@@ -33,6 +43,14 @@ namespace IsolarvLocalizationTool.Editor
         void DrawKeyVariable()
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("relatedKeys"));
+        }
+
+        void DrawDebugButtons()
+        {
+            if (GUILayout.Button("Clear table"))
+            {
+                _translateTable.translation.Clear();
+            }
         }
         
         void DrawOpenEditorWindow()

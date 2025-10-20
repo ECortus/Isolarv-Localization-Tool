@@ -10,6 +10,7 @@ namespace IsolarvLocalizationTool.Editor
     public class TranslateTablesWindow : EditorWindow
     {
         static LocalizationKeyCollection _selectedCollection;
+        static TranslateTable _selectedTable;
 
         ScrollView _tableView;
         
@@ -54,6 +55,8 @@ namespace IsolarvLocalizationTool.Editor
             objectField.RegisterValueChangedCallback((loc) =>
             {
                 _selectedCollection = loc.newValue as LocalizationKeyCollection;
+                _selectedTable = _selectedCollection.GetTable();
+                
                 UpdateTableView();
             });
             
@@ -69,6 +72,11 @@ namespace IsolarvLocalizationTool.Editor
 
         void CreateTableView()
         {
+            if (_selectedTable)
+            {
+                EditorWindowUtils.ValidateTable(_selectedTable);
+            }
+            
             var emptyTemplate = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
                 $"{EditorUtils.PACKAGE_EDITOR_PATH}/Editor Window/Tables Window/TableEmptyItem.uxml");
 
@@ -94,6 +102,18 @@ namespace IsolarvLocalizationTool.Editor
                 _tableView.Add(emptyItem);
                 return;
             }
+            
+            for (int i = 0; i < _selectedTable.translation.Count; i++)
+            {
+                var key = _selectedTable.translation[i].GetKey();
+                AddEditTableItem(key, i);
+            }
+        }
+        
+        void AddEditTableItem(string key, int index)
+        {
+            var edit = new EditTableKeyWindow(_selectedTable, key, index, this);
+            _tableView.Add(edit);
         }
     }
 }

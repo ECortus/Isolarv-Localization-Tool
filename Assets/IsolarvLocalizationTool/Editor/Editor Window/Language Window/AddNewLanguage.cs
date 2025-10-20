@@ -89,7 +89,7 @@ namespace IsolarvLocalizationTool.Editor
             
             _mainWindow.UpdateKeysSet();
 
-            int index = _languageKeyCollection.GetKeys().Count - 1;
+            int index = _languageKeyCollection.keysCount - 1;
             _mainWindow.OnLanguageSelected(index);
         }
 

@@ -759,7 +759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   localizationKeys: {fileID: 11400000, guid: 8709e9edf464e6942abfbaad5845cef8, type: 2}
-  keyIndex: 1
+  keyIndex: 2
 --- !u!114 &1272675206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -870,6 +870,10 @@ PrefabInstance:
     - target: {fileID: 1255336290898347429, guid: d1db7b1dda9b72f4fb2b803d3dee6b2a, type: 3}
       propertyPath: m_Name
       value: Localization Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4794736989434080314, guid: d1db7b1dda9b72f4fb2b803d3dee6b2a, type: 3}
+      propertyPath: tablesReference.Array.data[0].m_AssetGUID
+      value: f558d8f97b7bf09429e55070ad8ef617
       objectReference: {fileID: 0}
     - target: {fileID: 8946421797677669762, guid: d1db7b1dda9b72f4fb2b803d3dee6b2a, type: 3}
       propertyPath: m_LocalPosition.x
