@@ -55,7 +55,10 @@ namespace IsolarvLocalizationTool.Editor
             objectField.RegisterValueChangedCallback((loc) =>
             {
                 _selectedCollection = loc.newValue as LocalizationKeyCollection;
-                _selectedTable = _selectedCollection.GetTable();
+                if (_selectedCollection)
+                {
+                    _selectedTable = _selectedCollection.GetTable();
+                }
                 
                 UpdateTableView();
             });

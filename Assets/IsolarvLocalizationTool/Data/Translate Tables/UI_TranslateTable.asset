@@ -18,7 +18,7 @@ MonoBehaviour:
     translateInfo:
       text:
       - languageId: 0
-        text: 
+        text: Resume
       - languageId: 1
         text: 
       - languageId: 3

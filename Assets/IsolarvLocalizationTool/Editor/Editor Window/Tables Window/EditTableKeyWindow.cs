@@ -90,8 +90,7 @@ namespace IsolarvLocalizationTool.Editor
                 var textField = new TextField();
                 textField.value = text.stringValue;
                 textField.BindProperty(text);
-
-                textField.multiline = true;
+                
                 field = textField;
             }
             else if (keyType == LocalizationKey.KeyType.Sprite)
