@@ -2,7 +2,7 @@
 {
     public static class RuntimeUtils
     {
-        internal const bool IsDebugging = true;
+        internal const bool IsDebugging = false;
         
         public static string PACKAGE_BASE_PATH
         {
