@@ -27,7 +27,6 @@ namespace IsolarvLocalizationTool.Runtime
         }
 
         static string packageBasePath;
-
         public static string PACKAGE_BASE_PATH
         {
             get
@@ -38,8 +37,8 @@ namespace IsolarvLocalizationTool.Runtime
                 string[] res = System.IO.Directory.GetFiles(Application.dataPath, "RuntimeUtils.cs", SearchOption.AllDirectories);
                 if (res.Length == 0)
                 {
-                    Debug.LogError("Could not find RuntimeUtils.cs script path.");
-                    return null;
+                    packageBasePath = "Packages/com.isolarv.localization-tool";
+                    return packageBasePath;
                 }
 
                 var scriptPath = res[0].Replace(Application.dataPath, "Assets")
