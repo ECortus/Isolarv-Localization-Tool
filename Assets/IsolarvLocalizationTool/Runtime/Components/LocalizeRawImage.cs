@@ -15,7 +15,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
             _image = GetComponent<RawImage>();
             if (!_image)
             {
-                Debug.LogError($"Invalid RawImage on {gameObject.name} to localize!");
+                LocalizationToolDebug.LogError($"Invalid RawImage on {gameObject.name} to localize!");
                 return;
             }
             

@@ -18,165 +18,35 @@ MonoBehaviour:
     translateInfo:
       text:
       - languageId: 0
-        text: Resume
+        text: 
       - languageId: 1
-        text: 
-      - languageId: 3
-        text: 
-      - languageId: 4
-        text: 
-      - languageId: 2
-        text: 
-      - languageId: 5
         text: 
       sprite:
       - languageId: 0
         sprite: {fileID: 0}
       - languageId: 1
         sprite: {fileID: 0}
-      - languageId: 3
-        sprite: {fileID: 0}
-      - languageId: 4
-        sprite: {fileID: 0}
-      - languageId: 2
-        sprite: {fileID: 0}
-      - languageId: 5
-        sprite: {fileID: 0}
       texture:
       - languageId: 0
         texture: {fileID: 0}
       - languageId: 1
-        texture: {fileID: 0}
-      - languageId: 3
-        texture: {fileID: 0}
-      - languageId: 4
-        texture: {fileID: 0}
-      - languageId: 2
-        texture: {fileID: 0}
-      - languageId: 5
-        texture: {fileID: 0}
-  - key: Exit_Button_SPRITE
-    translateInfo:
-      text:
-      - languageId: 0
-        text: 
-      - languageId: 1
-        text: 
-      - languageId: 3
-        text: 
-      - languageId: 4
-        text: 
-      - languageId: 2
-        text: 
-      - languageId: 5
-        text: 
-      sprite:
-      - languageId: 0
-        sprite: {fileID: 0}
-      - languageId: 1
-        sprite: {fileID: 0}
-      - languageId: 3
-        sprite: {fileID: 0}
-      - languageId: 4
-        sprite: {fileID: 0}
-      - languageId: 2
-        sprite: {fileID: 0}
-      - languageId: 5
-        sprite: {fileID: 0}
-      texture:
-      - languageId: 0
-        texture: {fileID: 0}
-      - languageId: 1
-        texture: {fileID: 0}
-      - languageId: 3
-        texture: {fileID: 0}
-      - languageId: 4
-        texture: {fileID: 0}
-      - languageId: 2
-        texture: {fileID: 0}
-      - languageId: 5
         texture: {fileID: 0}
   - key: NewGame_Button_TEXT
     translateInfo:
       text:
       - languageId: 0
-        text: 12
+        text: 
       - languageId: 1
-        text: 123
-      - languageId: 3
-        text: 1234
-      - languageId: 4
-        text: 
-      - languageId: 2
-        text: 
-      - languageId: 5
         text: 
       sprite:
       - languageId: 0
         sprite: {fileID: 0}
       - languageId: 1
         sprite: {fileID: 0}
-      - languageId: 3
-        sprite: {fileID: 0}
-      - languageId: 4
-        sprite: {fileID: 0}
-      - languageId: 2
-        sprite: {fileID: 0}
-      - languageId: 5
-        sprite: {fileID: 0}
       texture:
       - languageId: 0
         texture: {fileID: 0}
       - languageId: 1
-        texture: {fileID: 0}
-      - languageId: 3
-        texture: {fileID: 0}
-      - languageId: 4
-        texture: {fileID: 0}
-      - languageId: 2
-        texture: {fileID: 0}
-      - languageId: 5
-        texture: {fileID: 0}
-  - key: ContinueGame_Button_TEXTURE
-    translateInfo:
-      text:
-      - languageId: 0
-        text: 
-      - languageId: 1
-        text: 
-      - languageId: 3
-        text: 
-      - languageId: 4
-        text: 
-      - languageId: 2
-        text: 
-      - languageId: 5
-        text: 
-      sprite:
-      - languageId: 0
-        sprite: {fileID: 0}
-      - languageId: 1
-        sprite: {fileID: 0}
-      - languageId: 3
-        sprite: {fileID: 0}
-      - languageId: 4
-        sprite: {fileID: 0}
-      - languageId: 2
-        sprite: {fileID: 0}
-      - languageId: 5
-        sprite: {fileID: 0}
-      texture:
-      - languageId: 0
-        texture: {fileID: 0}
-      - languageId: 1
-        texture: {fileID: 0}
-      - languageId: 3
-        texture: {fileID: 0}
-      - languageId: 4
-        texture: {fileID: 0}
-      - languageId: 2
-        texture: {fileID: 0}
-      - languageId: 5
         texture: {fileID: 0}
   - key: Settings_Button_TEXT
     translateInfo:
@@ -185,37 +55,47 @@ MonoBehaviour:
         text: 
       - languageId: 1
         text: 
-      - languageId: 3
-        text: 
-      - languageId: 4
-        text: 
-      - languageId: 2
-        text: 
-      - languageId: 5
-        text: 
       sprite:
       - languageId: 0
         sprite: {fileID: 0}
       - languageId: 1
-        sprite: {fileID: 0}
-      - languageId: 3
-        sprite: {fileID: 0}
-      - languageId: 4
-        sprite: {fileID: 0}
-      - languageId: 2
-        sprite: {fileID: 0}
-      - languageId: 5
         sprite: {fileID: 0}
       texture:
       - languageId: 0
         texture: {fileID: 0}
       - languageId: 1
         texture: {fileID: 0}
-      - languageId: 3
+  - key: Exit_Button_TEXT
+    translateInfo:
+      text:
+      - languageId: 0
+        text: 
+      - languageId: 1
+        text: 
+      sprite:
+      - languageId: 0
+        sprite: {fileID: 0}
+      - languageId: 1
+        sprite: {fileID: 0}
+      texture:
+      - languageId: 0
         texture: {fileID: 0}
-      - languageId: 4
+      - languageId: 1
         texture: {fileID: 0}
-      - languageId: 2
+  - key: ContinueGame_Button_TEXT
+    translateInfo:
+      text:
+      - languageId: 0
+        text: 
+      - languageId: 1
+        text: 
+      sprite:
+      - languageId: 0
+        sprite: {fileID: 0}
+      - languageId: 1
+        sprite: {fileID: 0}
+      texture:
+      - languageId: 0
         texture: {fileID: 0}
-      - languageId: 5
+      - languageId: 1
         texture: {fileID: 0}

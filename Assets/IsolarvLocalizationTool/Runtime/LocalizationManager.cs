@@ -39,7 +39,7 @@ namespace IsolarvLocalizationTool.Runtime
 
         void Initialize(AsyncOperationHandle<IResourceLocator> locator)
         {
-            Debug.Log("LocalizationManager load assets...");
+            LocalizationToolDebug.Log("LocalizationManager load assets...");
             
             UniTask.Create(async () =>
             {
@@ -49,7 +49,7 @@ namespace IsolarvLocalizationTool.Runtime
                 InvokeListenersOnInitialize();
             });
             
-            Debug.Log("LocalizationManager successfully loaded assets and initialized.");
+            LocalizationToolDebug.Log("LocalizationManager successfully loaded assets and initialized.");
             
             DontDestroyOnLoad(this.gameObject);
         }
@@ -65,7 +65,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
                 else
                 {
-                    Debug.LogError("Failed to load languages.");
+                    LocalizationToolDebug.LogError("Failed to load languages.");
                 }
             };
 
@@ -93,7 +93,7 @@ namespace IsolarvLocalizationTool.Runtime
                     }
                     else
                     {
-                        Debug.LogError($"Failed to load translation table {tableReference.Asset.name}.");
+                        LocalizationToolDebug.LogError($"Failed to load translation table {tableReference.Asset.name}.");
                     }
                 };
                 
@@ -114,7 +114,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return null;
             }
             
@@ -125,7 +125,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return "";
             }
             
@@ -138,7 +138,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogError($"Translation key {key} not found.");
+            LocalizationToolDebug.LogError($"Translation key {key} not found.");
             return "";
         }
         
@@ -146,7 +146,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return null;
             }
             
@@ -159,7 +159,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogError($"Translation key {key} not found.");
+            LocalizationToolDebug.LogError($"Translation key {key} not found.");
             return null;
         }
         
@@ -167,7 +167,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return null;
             }
             
@@ -180,7 +180,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogError($"Translation key {key} not found.");
+            LocalizationToolDebug.LogError($"Translation key {key} not found.");
             return null;
         }
 
@@ -194,7 +194,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return;
             }
 
@@ -219,7 +219,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return;
             }
             
@@ -230,7 +230,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationManager is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationManager is not initialized.");
                 return;
             }
             

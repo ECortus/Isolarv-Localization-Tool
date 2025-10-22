@@ -36,7 +36,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationSettings is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationSettings is not initialized.");
                 return -1;
             }
             
@@ -47,7 +47,7 @@ namespace IsolarvLocalizationTool.Runtime
         {
             if (!instance)
             {
-                Debug.LogError("LocalizationSettings is not initialized.");
+                LocalizationToolDebug.LogError("LocalizationSettings is not initialized.");
                 return false;
             }
             

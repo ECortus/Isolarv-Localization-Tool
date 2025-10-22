@@ -20,13 +20,13 @@ namespace IsolarvLocalizationTool.Runtime.Components
         {
             if (!localizationKeys)
             {
-                Debug.LogError($"Invalid LocalizationKeys on {gameObject.name} to localize!");
+                LocalizationToolDebug.LogError($"Invalid LocalizationKeys on {gameObject.name} to localize!");
                 return;
             }
 
             if (keyIndex == -1)
             {
-                Debug.LogError($"Invalid key index on {gameObject.name} to localize!");
+                LocalizationToolDebug.LogError($"Invalid key index on {gameObject.name} to localize!");
                 return;
             }
                 

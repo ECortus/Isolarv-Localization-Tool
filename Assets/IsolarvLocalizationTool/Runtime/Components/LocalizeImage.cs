@@ -15,7 +15,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
             _image = GetComponent<Image>();
             if (!_image)
             {
-                Debug.LogError($"Invalid Image on {gameObject.name} to localize!");
+                LocalizationToolDebug.LogError($"Invalid Image on {gameObject.name} to localize!");
                 return;
             }
             

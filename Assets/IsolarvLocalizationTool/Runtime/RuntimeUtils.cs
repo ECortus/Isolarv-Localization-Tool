@@ -1,21 +1,54 @@
-﻿namespace IsolarvLocalizationTool.Runtime
+﻿using System.IO;
+using UnityEditor;
+using UnityEngine;
+
+namespace IsolarvLocalizationTool.Runtime
 {
     public static class RuntimeUtils
     {
-        internal const bool IsDebugging = false;
-        
+        static PackageSettings settingsInstance;
+        public static PackageSettings Settings
+        {
+            get
+            {
+                if (settingsInstance != null)
+                    return settingsInstance;
+
+                var scriptPath = packageBasePath + "/Package Settings.asset";
+
+                settingsInstance = AssetDatabase.LoadAssetAtPath<PackageSettings>(scriptPath);
+                if (settingsInstance == null)
+                {
+                    Debug.LogError("No Package Settings asset found in the project. Please create one via the 'Create' menu in the Project window.");
+                }
+
+                return settingsInstance;
+            }
+        }
+
+        static string packageBasePath;
+
         public static string PACKAGE_BASE_PATH
         {
             get
             {
-                string path = "";
-                
-                if (IsDebugging)
-                    path = "Assets/IsolarvLocalizationTool";
-                else
-                    path = "Packages/com.isolarv.localization-tool";
-                
-                return path;
+                if (!string.IsNullOrEmpty(packageBasePath))
+                    return packageBasePath;
+
+                string[] res = System.IO.Directory.GetFiles(Application.dataPath, "RuntimeUtils.cs", SearchOption.AllDirectories);
+                if (res.Length == 0)
+                {
+                    Debug.LogError("Could not find RuntimeUtils.cs script path.");
+                    return null;
+                }
+
+                var scriptPath = res[0].Replace(Application.dataPath, "Assets")
+                    .Replace("RuntimeUtils.cs", "")
+                    .Replace("\\", "/")
+                    .Replace("/Runtime/", "");
+
+                packageBasePath = scriptPath;
+                return packageBasePath;
             }
         }
     }

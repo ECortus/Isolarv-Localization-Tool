@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    [CreateAssetMenu(fileName = "Language Key Collection", menuName = "Localization Tool/Language Key Collection")]
+    [CreateAssetMenu(fileName = "Language Key Collection", menuName = "Isolarv/Localization Tool/Language Key Collection")]
     public class LanguageKeyCollection : ScriptableObject
     {
         [SerializeField] private List<LanguageKey> keys = new List<LanguageKey>();
@@ -37,7 +37,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogError($"Language key with id {id} not found.");
+            LocalizationToolDebug.LogError($"Language key with id {id} not found.");
             return null;
         }
 

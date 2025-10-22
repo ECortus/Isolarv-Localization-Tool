@@ -72,7 +72,7 @@ namespace IsolarvLocalizationTool.Runtime
                     return info.text;
             }
             
-            Debug.LogError($"Translation info by language id {languageId} not found.");
+            LocalizationToolDebug.LogError($"Translation info by language id {languageId} not found.");
             return "";
         }
         
@@ -84,7 +84,7 @@ namespace IsolarvLocalizationTool.Runtime
                     return info.sprite;
             }
             
-            Debug.LogError($"Translation info by language id {languageId} not found.");
+            LocalizationToolDebug.LogError($"Translation info by language id {languageId} not found.");
             return null;
         }
         
@@ -96,7 +96,7 @@ namespace IsolarvLocalizationTool.Runtime
                     return info.texture;
             }
             
-            Debug.LogError($"Translation info by language id {languageId} not found.");
+            LocalizationToolDebug.LogError($"Translation info by language id {languageId} not found.");
             return null;
         }
     }

@@ -15,7 +15,7 @@ namespace IsolarvLocalizationTool.Runtime.Components
             _text = GetComponent<TMP_Text>();
             if (!_text)
             {
-                Debug.LogError($"Invalid Text on {gameObject.name} to localize!");
+                LocalizationToolDebug.LogError($"Invalid Text on {gameObject.name} to localize!");
                 return;
             }
             

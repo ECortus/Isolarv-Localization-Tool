@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    [CreateAssetMenu(fileName = "NAME_LocalizationKeyCollection", menuName = "Localization Tool/Localization Key Collection")]
+    [CreateAssetMenu(fileName = "NAME_LocalizationKeyCollection", menuName = "Isolarv/Localization Tool/Localization Key Collection")]
     public class LocalizationKeyCollection : ScriptableObject 
     {
         [SerializeField] List<LocalizationKey> keys = new List<LocalizationKey>();
@@ -57,7 +57,7 @@ namespace IsolarvLocalizationTool.Runtime
                 EditorUtility.SetDirty(this);
             }
             
-            Debug.Log($"Localization keys {name} is validated and related to table {tableName}.");
+            LocalizationToolDebug.Log($"Localization keys {name} is validated and related to table {tableName}.");
         }
         
         public LocalizationKey GetKey(string key)
@@ -70,7 +70,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogError($"Localization key with id {key} not found.");
+            LocalizationToolDebug.LogError($"Localization key with id {key} not found.");
             return null;
         }
 
@@ -84,7 +84,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogError($"Localization key with id {key} not found.");
+            LocalizationToolDebug.LogError($"Localization key with id {key} not found.");
             return -1;
         }
         
@@ -131,7 +131,7 @@ namespace IsolarvLocalizationTool.Runtime
                 }
             }
             
-            Debug.LogWarning($"Duplicate keys in {name} are removed.");
+            LocalizationToolDebug.LogWarning($"Duplicate keys in {name} are removed.");
             EditorUtility.SetDirty(this);
         }
 #endif
