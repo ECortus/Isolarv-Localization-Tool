@@ -1,31 +1,31 @@
-using IsolarvLocalizationTool.Runtime;
 using UnityEngine;
 
-public static class LocalizationToolDebug
+namespace IsolarvLocalizationTool.Runtime
 {
-    static PackageSettings settings => RuntimeUtils.Settings;
-
-    public static void Log(string message)
+    public static class LocalizationToolDebug
     {
-        if (settings.ShowDebugLogs)
+        public static void Log(string message)
         {
-            Debug.Log(message);
+            if (RuntimeUtils.Settings != null && RuntimeUtils.Settings.ShowDebugLogs)
+            {
+                Debug.Log("[Localization Tool] " + message);
+            }
         }
-    }
 
-    public static void LogWarning(string message)
-    {
-        if (settings.ShowDebugLogs)
+        public static void LogWarning(string message)
         {
-            Debug.LogWarning(message);
+            if (RuntimeUtils.Settings != null && RuntimeUtils.Settings.ShowDebugLogs)
+            {
+                Debug.LogWarning("[Localization Tool] " + message);
+            }
         }
-    }
 
-    public static void LogError(string message)
-    {
-        if (settings.ShowDebugLogs)
+        public static void LogError(string message)
         {
-            Debug.Log(message);
+            if (RuntimeUtils.Settings != null && RuntimeUtils.Settings.ShowDebugLogs)
+            {
+                Debug.LogError("[Localization Tool] " + message);
+            }
         }
     }
 }
