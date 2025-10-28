@@ -18,9 +18,7 @@ namespace IsolarvLocalizationTool.Runtime
 
                 settingsInstance = AssetDatabase.LoadAssetAtPath<PackageSettings>(scriptPath);
                 if (settingsInstance == null)
-                {
-                    Debug.LogError("No Package Settings asset found in the project. Please create one via the 'Create' menu in the Project window.");
-                }
+                    throw new System.Exception("[Localization Tool] Package Settings asset not found in Resources folder. Using default settings.");
 
                 return settingsInstance;
             }
