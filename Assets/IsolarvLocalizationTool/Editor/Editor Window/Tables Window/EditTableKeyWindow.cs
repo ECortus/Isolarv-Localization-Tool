@@ -86,41 +86,44 @@ namespace IsolarvLocalizationTool.Editor
             {
                 var textProperty = infoProperty.FindPropertyRelative("text").GetArrayElementAtIndex(index);
                 var text = textProperty.FindPropertyRelative("text");
-                
+
                 var textField = new TextField();
                 textField.value = text.stringValue;
+
                 textField.BindProperty(text);
-                
                 field = textField;
             }
             else if (keyType == LocalizationKey.KeyType.Sprite)
             {
                 var spriteProperty = infoProperty.FindPropertyRelative("sprite").GetArrayElementAtIndex(index);
                 var sprite = spriteProperty.FindPropertyRelative("sprite");
-                
+
                 var objectField = new ObjectField();
                 objectField.objectType = typeof(Sprite);
                 objectField.value = sprite.objectReferenceValue;
-                objectField.BindProperty(sprite);
 
+                objectField.BindProperty(sprite);
                 field = objectField;
             }
             else if (keyType == LocalizationKey.KeyType.Texture)
             {
                 var textureProperty = infoProperty.FindPropertyRelative("texture").GetArrayElementAtIndex(index);
                 var texture = textureProperty.FindPropertyRelative("texture");
-                
+
                 var objectField = new ObjectField();
                 objectField.objectType = typeof(Texture);
                 objectField.value = texture.objectReferenceValue;
-                objectField.BindProperty(texture);
 
+                objectField.BindProperty(texture);
                 field = objectField;
             }
             else
             {
                 throw new System.NotImplementedException();
             }
+            
+            field.style.unityTextAlign = TextAnchor.MiddleLeft;
+            field.StretchToParentSize();
             
             itemField.Add(field);
             itemField.Bind(serializedObject);

@@ -49,7 +49,7 @@
     align-self: center;
     background-color: rgb(51, 51, 51);
     justify-content: flex-start;
-    height: 95%;
+    height: 98%;
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;

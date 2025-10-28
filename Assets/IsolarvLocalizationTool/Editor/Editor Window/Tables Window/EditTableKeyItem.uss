@@ -1,5 +1,5 @@
 .c-item {
-    width: 120px;
+    width: 140px;
     height: 90px;
     align-self: stretch;
     align-items: center;
@@ -33,7 +33,7 @@
     white-space: normal;
     height: 30px;
     border-bottom-width: 0;
-    width: 100px;
+    width: 80%;
     background-color: rgba(255, 0, 0, 0);
     border-top-width: 30px;
     -unity-text-outline-width: 0;

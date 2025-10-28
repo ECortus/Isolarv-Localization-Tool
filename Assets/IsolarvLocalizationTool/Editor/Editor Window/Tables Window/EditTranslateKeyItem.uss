@@ -1,6 +1,6 @@
 .c-item {
-    width: 180px;
-    height: auto;
+    width: 240px;
+    height: 90px;
     align-self: auto;
     align-items: stretch;
     border-bottom-width: 2px;
@@ -45,7 +45,7 @@
 
 .c-field-item {
     background-color: rgb(54, 54, 54);
-    height: 45px;
+    height: 50%;
     width: 90%;
     align-items: center;
     align-self: center;
@@ -57,17 +57,19 @@
 }
 
 .c-field {
-    width: 90%;
+    width: 95%;
     height: 100%;
     -unity-text-align: lower-left;
-    align-self: stretch;
-    justify-content: flex-start;
-    align-content: flex-start;
+    align-self: center;
+    justify-content: center;
+    align-content: center;
     align-items: stretch;
     flex-grow: 0;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     font-size: 13px;
     white-space: pre-wrap;
     text-overflow: clip;
+    left: -1.5px;
+    flex-shrink: 1;
 }
