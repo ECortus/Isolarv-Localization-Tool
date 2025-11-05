@@ -4,18 +4,6 @@ namespace IsolarvLocalizationTool.Runtime
 {
     public static class LocalizationToolDebug
     {
-        private static PackageSettings _packageSettings;
-        private static PackageSettings PackageSettings
-        {
-            get
-            {
-                if (_packageSettings == null)
-                    _packageSettings = RuntimeUtils.Settings;
-
-                return _packageSettings;
-            }
-        }
-
         public static void Log(string message)
         {
             if (PackageSettings.ShowDebugLogs)

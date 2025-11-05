@@ -6,24 +6,6 @@ namespace IsolarvLocalizationTool.Runtime
 {
     public static class RuntimeUtils
     {
-        static PackageSettings settingsInstance;
-        public static PackageSettings Settings
-        {
-            get
-            {
-                if (settingsInstance != null)
-                    return settingsInstance;
-
-                var scriptPath = packageBasePath + "/Package Settings.asset";
-
-                settingsInstance = AssetDatabase.LoadAssetAtPath<PackageSettings>(scriptPath);
-                if (settingsInstance == null)
-                    throw new System.Exception("[Localization Tool] Package Settings asset not found in Resources folder. Using default settings.");
-
-                return settingsInstance;
-            }
-        }
-
         static string packageBasePath;
         public static string PACKAGE_BASE_PATH
         {
