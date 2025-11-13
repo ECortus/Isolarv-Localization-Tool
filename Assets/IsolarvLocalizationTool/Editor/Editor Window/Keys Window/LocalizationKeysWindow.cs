@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using IsolarvLocalizationTool.Runtime;
 using UnityEditor;
@@ -18,6 +19,8 @@ namespace IsolarvLocalizationTool.Editor
         private VisualTreeAsset _listViewItemTemplate;
 
         private List<LocalizationKeyCollection> _keysSet;
+
+        private string keysFolder => $"{EditorUtils.ASSETS_PATH}/Keys";
 
         public event Action OnUpdate;
         
@@ -67,8 +70,7 @@ namespace IsolarvLocalizationTool.Editor
 
         void TryLoadCollection()
         {
-            _localizationKeyCollections = EditorUtils.LoadAllAssetsInFolder<LocalizationKeyCollection>(
-                $"{EditorUtils.PACKAGE_BASE_PATH}/Data/Localization Keys").ToList();
+            _localizationKeyCollections = EditorUtils.LoadAllAssetsInFolder<LocalizationKeyCollection>(keysFolder).ToList();
         }
 
         void UpdateOnCollectionChange()
@@ -126,7 +128,16 @@ namespace IsolarvLocalizationTool.Editor
             
             var newCollection = ScriptableObject.CreateInstance<LocalizationKeyCollection>();
             newCollection.name = _newCollectionName;
-            AssetDatabase.CreateAsset(newCollection, $"{EditorUtils.PACKAGE_BASE_PATH}/Data/Localization Keys/{_newCollectionName}.asset");
+
+            var assetPath = $"{keysFolder}/{_newCollectionName}.asset";
+            
+            string directoryPath = Path.GetDirectoryName(assetPath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            
+            AssetDatabase.CreateAsset(newCollection, assetPath);
 
             _newCollectionNameField.value = "";
             UpdateKeysSet();

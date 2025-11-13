@@ -10,6 +10,8 @@ namespace IsolarvLocalizationTool.Editor
     {
         internal static string PACKAGE_BASE_PATH => RuntimeUtils.PACKAGE_BASE_PATH;
         internal static string PACKAGE_EDITOR_PATH => PACKAGE_BASE_PATH + "/Editor";
+
+        internal static string ASSETS_PATH => "Assets/_Isolarv/Localization Tool";
         
         private static Texture _toolIcon;
         public static GUIContent GetWindowTitle(string windowName)

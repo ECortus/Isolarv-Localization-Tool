@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    [CreateAssetMenu(fileName = "Language Key Collection", menuName = "Isolarv/Localization Tool/Language Key Collection")]
     public class LanguageKeyCollection : ScriptableObject
     {
         [SerializeField] private List<LanguageKey> keys = new List<LanguageKey>();
