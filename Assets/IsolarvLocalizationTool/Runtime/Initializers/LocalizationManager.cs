@@ -9,7 +9,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    public class LocalizationManager : MonoBehaviour
+    internal class LocalizationManager : MonoBehaviour
     {
         static LocalizationManager _instance;
         static LocalizationManager instance
@@ -34,7 +34,7 @@ namespace IsolarvLocalizationTool.Runtime
 
         void Awake()
         {
-            AddressableInitializer.AddListener(Initialize);
+            LocalizationAddressableInitializer.AddListener(Initialize);
         }
 
         void Initialize(AsyncOperationHandle<IResourceLocator> locator)

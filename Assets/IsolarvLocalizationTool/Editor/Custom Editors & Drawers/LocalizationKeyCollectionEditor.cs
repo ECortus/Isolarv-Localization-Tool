@@ -5,7 +5,7 @@ using UnityEngine;
 namespace IsolarvLocalizationTool.Editor
 {
     [CustomEditor(typeof(LocalizationKeyCollection))]
-    public class LocalizationKeyCollectionEditor : UnityEditor.Editor
+    internal class LocalizationKeyCollectionEditor : UnityEditor.Editor
     {
         LocalizationKeyCollection collection;
         

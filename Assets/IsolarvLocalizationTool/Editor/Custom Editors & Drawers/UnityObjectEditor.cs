@@ -4,7 +4,7 @@ namespace IsolarvLocalizationTool.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(UnityEngine.Object))]
-    public class UnityObjectEditor : UnityEditor.Editor
+    internal class UnityObjectEditor : UnityEditor.Editor
     {
         
     }

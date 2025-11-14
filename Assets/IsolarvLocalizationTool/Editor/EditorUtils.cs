@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using IsolarvLocalizationTool.Runtime;
 using UnityEditor;
 using UnityEngine;
@@ -6,9 +7,33 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public static class EditorUtils
+    internal static class EditorUtils
     {
-        internal static string PACKAGE_BASE_PATH => RuntimeUtils.PACKAGE_BASE_PATH;
+        static string packageBasePath;
+        public static string PACKAGE_BASE_PATH
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(packageBasePath))
+                    return packageBasePath;
+
+                string[] res = System.IO.Directory.GetFiles(Application.dataPath, "RuntimeUtils.cs", SearchOption.AllDirectories);
+                if (res.Length == 0)
+                {
+                    packageBasePath = "Packages/com.isolarv.localization-tool";
+                    return packageBasePath;
+                }
+
+                var scriptPath = res[0].Replace(Application.dataPath, "Assets")
+                    .Replace("RuntimeUtils.cs", "")
+                    .Replace("\\", "/")
+                    .Replace("/Runtime/", "");
+
+                packageBasePath = scriptPath;
+                return packageBasePath;
+            }
+        }
+        
         internal static string PACKAGE_EDITOR_PATH => PACKAGE_BASE_PATH + "/Editor";
 
         internal static string ASSETS_PATH => "Assets/_Isolarv/Localization Tool";

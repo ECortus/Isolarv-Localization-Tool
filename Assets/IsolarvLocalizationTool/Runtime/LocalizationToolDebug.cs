@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    public static class LocalizationToolDebug
+    internal static class LocalizationToolDebug
     {
         public static void Log(string message)
         {

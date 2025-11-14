@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class AddNewLanguage : VisualElement
+    internal class AddNewLanguage : VisualElement
     {
         IntegerField _idField;
         TextField _nameField;

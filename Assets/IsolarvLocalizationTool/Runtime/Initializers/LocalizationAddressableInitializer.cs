@@ -6,15 +6,15 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    public class AddressableInitializer : MonoBehaviour
+    internal class LocalizationAddressableInitializer : MonoBehaviour
     {
-        static AddressableInitializer _instance;
-        static AddressableInitializer instance
+        static LocalizationAddressableInitializer _instance;
+        static LocalizationAddressableInitializer instance
         {
             get
             {
                 if (!_instance)
-                    _instance = FindAnyObjectByType<AddressableInitializer>();
+                    _instance = FindAnyObjectByType<LocalizationAddressableInitializer>();
                 return _instance;
             }
         }

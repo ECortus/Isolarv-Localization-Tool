@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public static class LocalizationToolsCommand
+    internal static class LocalizationToolsCommand
     {
         [MenuItem("Tools/Isolarv/Localization Tool/Validate all tables", false, 115)]
         public static async void ValidateAllTables()

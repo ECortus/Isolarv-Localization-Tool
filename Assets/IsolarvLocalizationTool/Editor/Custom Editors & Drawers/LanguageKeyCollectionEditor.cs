@@ -5,7 +5,7 @@ using UnityEngine;
 namespace IsolarvLocalizationTool.Editor
 {
     [CustomEditor(typeof(LanguageKeyCollection))]
-    public class LanguageKeyCollectionEditor : UnityEditor.Editor
+    internal class LanguageKeyCollectionEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public static class EditorWindowUtils
+    internal static class EditorWindowUtils
     {
         public static T OpenWindow<T>(string label, params Type[] desiredDockNextTo) where T : EditorWindow
         {

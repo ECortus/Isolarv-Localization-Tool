@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class LocalizationKeysWindow : EditorWindow
+    internal class LocalizationKeysWindow : EditorWindow
     {
         private List<LocalizationKeyCollection> _localizationKeyCollections;
 
@@ -212,7 +212,7 @@ namespace IsolarvLocalizationTool.Editor
             var removeButton = mainAbilityBox.Q<Button>("remove-button");
             removeButton.clicked += () =>
             {
-                AssetDatabase.DeleteAsset($"{EditorUtils.PACKAGE_BASE_PATH}/Data/Localization Keys/{key.name}.asset");
+                AssetDatabase.DeleteAsset($"{keysFolder}/{key.name}.asset");
                 UpdateKeysSet();
             };
         }

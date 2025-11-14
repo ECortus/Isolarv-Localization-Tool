@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class TranslateTablesWindow : EditorWindow
+    internal class TranslateTablesWindow : EditorWindow
     {
         static LocalizationKeyCollection _selectedCollection;
         static TranslateTable _selectedTable;

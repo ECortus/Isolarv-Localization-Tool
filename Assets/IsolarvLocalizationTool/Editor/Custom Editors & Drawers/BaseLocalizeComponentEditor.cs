@@ -6,7 +6,7 @@ using UnityEditor;
 namespace IsolarvLocalizationTool.Editor
 {
     [CustomEditor(typeof(BaseLocalizeComponent), true)]
-    public class BaseLocalizeComponentEditor : UnityEditor.Editor
+    internal class BaseLocalizeComponentEditor : UnityEditor.Editor
     {
         BaseLocalizeComponent _component;
         

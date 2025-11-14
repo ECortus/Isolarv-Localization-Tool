@@ -8,7 +8,7 @@ using ObjectField = UnityEditor.UIElements.ObjectField;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class EditTableKeyWindow : VisualElement
+    internal class EditTableKeyWindow : VisualElement
     {
         LanguageKeyCollection _languageKeyCollection;
         LocalizationKey _relatedKey;

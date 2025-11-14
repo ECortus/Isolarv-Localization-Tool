@@ -4,7 +4,7 @@ using UnityEngine;
 namespace IsolarvLocalizationTool.Runtime
 {
     [RequireComponent(typeof(LocalizationManager))]
-    public class LocalizationSettings : MonoBehaviour
+    internal class LocalizationSettings : MonoBehaviour
     {
         static LocalizationSettings _instance;
         static LocalizationSettings instance

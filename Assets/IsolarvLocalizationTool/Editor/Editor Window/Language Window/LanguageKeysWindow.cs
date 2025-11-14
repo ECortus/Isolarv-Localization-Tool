@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class LanguageKeysWindow : EditorWindow
+    internal class LanguageKeysWindow : EditorWindow
     {
         private LanguageKeyCollection _languageKeyCollection;
 

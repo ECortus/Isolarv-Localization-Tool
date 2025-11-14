@@ -6,7 +6,7 @@ using UnityEngine;
 namespace IsolarvLocalizationTool.Editor
 {
     [CustomEditor(typeof(TranslateTable), true), CanEditMultipleObjects]
-    public class TranslateTableEditor : UnityEditor.Editor
+    internal class TranslateTableEditor : UnityEditor.Editor
     {
         TranslateTable _translateTable;
 

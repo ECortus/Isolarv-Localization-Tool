@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 namespace IsolarvLocalizationTool.Editor
 {
     [UxmlElement]
-	public partial class UxmlImage : Image
+    internal partial class UxmlImage : Image
 	{
 		#region Constructors
 		

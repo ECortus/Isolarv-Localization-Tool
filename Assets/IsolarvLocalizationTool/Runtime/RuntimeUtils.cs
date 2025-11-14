@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    public static class RuntimeUtils
+    internal static class RuntimeUtils
     {
         static string packageBasePath;
         public static string PACKAGE_BASE_PATH

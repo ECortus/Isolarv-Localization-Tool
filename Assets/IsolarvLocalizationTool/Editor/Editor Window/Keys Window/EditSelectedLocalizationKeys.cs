@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace IsolarvLocalizationTool.Editor
 {
-    public class EditSelectedLocalizationKeys : VisualElement
+    internal class EditSelectedLocalizationKeys : VisualElement
     {
         LocalizationKeyCollection _localizationKeyCollection;
         LocalizationKeysWindow _parentWindow;
