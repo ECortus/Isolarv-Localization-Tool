@@ -37,7 +37,7 @@ namespace IsolarvLocalizationTool.Editor
             var validateTableButton = this.Q<Button>("validate-table");
             validateTableButton.clicked += () =>
             {
-                _localizationKeyCollection.ValidateTable();
+                EditorUtils.ValidateTableOfKeys(_localizationKeyCollection);
             };
 
             _removeDuplicatesButton = this.Q<Button>("remove-duplicates");

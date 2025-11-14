@@ -74,6 +74,11 @@ namespace IsolarvLocalizationTool.Runtime
         {
             return relatedKeys != null;
         }
+        
+        public void OnTableValidate()
+        {
+            LocalizationToolDebug.Log($"Table {AssetDatabase.GetAssetPath(this)} is validated.");
+        }
 #endif
     }
 }

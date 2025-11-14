@@ -20,8 +20,6 @@ namespace IsolarvLocalizationTool.Editor
 
         private List<LocalizationKeyCollection> _keysSet;
 
-        private string keysFolder => $"{EditorUtils.ASSETS_PATH}/Keys";
-
         public event Action OnUpdate;
         
         [MenuItem("Tools/Isolarv/Localization Tool/Keys", false, 60)]
@@ -70,7 +68,7 @@ namespace IsolarvLocalizationTool.Editor
 
         void TryLoadCollection()
         {
-            _localizationKeyCollections = EditorUtils.LoadAllAssetsInFolder<LocalizationKeyCollection>(keysFolder).ToList();
+            _localizationKeyCollections = EditorUtils.LoadAllAssetsInFolder<LocalizationKeyCollection>(EditorUtils.KEYS_PATH).ToList();
         }
 
         void UpdateOnCollectionChange()
@@ -129,15 +127,8 @@ namespace IsolarvLocalizationTool.Editor
             var newCollection = ScriptableObject.CreateInstance<LocalizationKeyCollection>();
             newCollection.name = _newCollectionName;
 
-            var assetPath = $"{keysFolder}/{_newCollectionName}.asset";
-            
-            string directoryPath = Path.GetDirectoryName(assetPath);
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-            
-            AssetDatabase.CreateAsset(newCollection, assetPath);
+            var assetPath = $"{EditorUtils.KEYS_PATH}/{_newCollectionName}.asset";
+            EditorUtils.CreateAsset(newCollection, assetPath);
 
             _newCollectionNameField.value = "";
             UpdateKeysSet();
@@ -212,7 +203,7 @@ namespace IsolarvLocalizationTool.Editor
             var removeButton = mainAbilityBox.Q<Button>("remove-button");
             removeButton.clicked += () =>
             {
-                AssetDatabase.DeleteAsset($"{keysFolder}/{key.name}.asset");
+                AssetDatabase.DeleteAsset($"{EditorUtils.KEYS_PATH}/{key.name}.asset");
                 UpdateKeysSet();
             };
         }

@@ -67,7 +67,7 @@ namespace IsolarvLocalizationTool.Editor
 
         void Update()
         {
-            if (_languageKeyCollection.keysCount != _lastCount)
+            if (_languageKeyCollection && _languageKeyCollection.keysCount != _lastCount)
             {
                 UpdateOnCollectionChange();
             }

@@ -61,7 +61,7 @@ namespace IsolarvLocalizationTool.Editor
             
             if (GUILayout.Button("Validate Table"))
             {
-                collection.ValidateTable();
+                EditorUtils.ValidateTableOfKeys(collection);
             }
         }
         

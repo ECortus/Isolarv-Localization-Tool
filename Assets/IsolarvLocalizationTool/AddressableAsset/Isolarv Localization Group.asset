@@ -20,11 +20,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 68009fdd1ff4184469304162fa3d428b
-    m_Address: Assets/IsolarvLocalizationTool/Data/Translation Tables
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 565e10c3e14109143b1f8779f6801396, type: 2}
   m_SchemaSet:

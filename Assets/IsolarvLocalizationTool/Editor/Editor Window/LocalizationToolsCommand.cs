@@ -17,14 +17,14 @@ namespace IsolarvLocalizationTool.Editor
         static async UniTask ValidateByKeys()
         {
             var keys = AssetDatabase.FindAssets("t:LocalizationKeyCollection", new string[] 
-                { $"{EditorUtils.PACKAGE_BASE_PATH}/Data/Localization Keys" });
+                { $"{EditorUtils.KEYS_PATH}" });
             
             foreach (var key in keys)
             {
                 var path = AssetDatabase.GUIDToAssetPath(key);
                 var asset = AssetDatabase.LoadAssetAtPath<LocalizationKeyCollection>(path);
                 
-                asset.ValidateTable();
+                EditorUtils.ValidateTableOfKeys(asset);
                 
                 await UniTask.Yield();
             }
@@ -33,7 +33,7 @@ namespace IsolarvLocalizationTool.Editor
         static async UniTask ValidateByTables()
         {
             var tables = AssetDatabase.FindAssets("t:TranslateTable", new string[] 
-                { $"{EditorUtils.PACKAGE_BASE_PATH}/Data/Translate Tables" });
+                { $"{EditorUtils.TABLES_PATH}" });
             
             foreach (var table in tables)
             {
@@ -47,7 +47,7 @@ namespace IsolarvLocalizationTool.Editor
                 else
                 {
                     EditorWindowUtils.ValidateTable(asset);
-                    Debug.Log($"Table {path} is validated.");
+                    asset.OnTableValidate();
                 }
                 
                 await UniTask.Yield();

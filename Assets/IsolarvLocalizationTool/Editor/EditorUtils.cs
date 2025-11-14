@@ -17,7 +17,7 @@ namespace IsolarvLocalizationTool.Editor
                 if (!string.IsNullOrEmpty(packageBasePath))
                     return packageBasePath;
 
-                string[] res = System.IO.Directory.GetFiles(Application.dataPath, "RuntimeUtils.cs", SearchOption.AllDirectories);
+                string[] res = System.IO.Directory.GetFiles(Application.dataPath, "PackageSettings.cs", SearchOption.AllDirectories);
                 if (res.Length == 0)
                 {
                     packageBasePath = "Packages/com.isolarv.localization-tool";
@@ -25,7 +25,7 @@ namespace IsolarvLocalizationTool.Editor
                 }
 
                 var scriptPath = res[0].Replace(Application.dataPath, "Assets")
-                    .Replace("RuntimeUtils.cs", "")
+                    .Replace("PackageSettings.cs", "")
                     .Replace("\\", "/")
                     .Replace("/Runtime/", "");
 
@@ -37,6 +37,9 @@ namespace IsolarvLocalizationTool.Editor
         internal static string PACKAGE_EDITOR_PATH => PACKAGE_BASE_PATH + "/Editor";
 
         internal static string ASSETS_PATH => "Assets/_Isolarv/Localization Tool";
+        
+        internal static string KEYS_PATH => ASSETS_PATH + "/Keys";
+        internal static string TABLES_PATH => ASSETS_PATH + "/Tables";
         
         private static Texture _toolIcon;
         public static GUIContent GetWindowTitle(string windowName)
@@ -58,6 +61,44 @@ namespace IsolarvLocalizationTool.Editor
             }
             
             return assets;
+        }
+        
+        public static void ValidateTableOfKeys(LocalizationKeyCollection collection)
+        {
+            var tableName = collection.name.Replace("_KeyCollection", "_TranslateTable");
+            var folder = $"{TABLES_PATH}";
+            var path = folder + $"/{tableName}.asset";
+
+            var asset = AssetDatabase.LoadAssetAtPath<TranslateTable>(path);
+            if (!asset)
+            {
+                asset = ScriptableObject.CreateInstance<TranslateTable>();
+                CreateAsset(asset, path);
+                EditorUtility.SetDirty(asset);
+                
+                collection.Table = asset;
+                EditorUtility.SetDirty(collection);
+            }
+
+            collection.Table.SetRelatedKeys(collection);
+            if (collection.Table != asset)
+            {
+                collection.Table = asset;
+                EditorUtility.SetDirty(collection);
+            }
+            
+            collection.OnTableValidate(tableName);
+        }
+
+        public static void CreateAsset(Object asset, string assetPath)
+        {
+            string directoryPath = Path.GetDirectoryName(assetPath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            
+            AssetDatabase.CreateAsset(asset, assetPath);
         }
     }
 }

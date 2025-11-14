@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace IsolarvLocalizationTool.Runtime
 {
-    [CreateAssetMenu(fileName = "NAME_LocalizationKeyCollection", menuName = "Isolarv/Localization Tool/Localization Key Collection")]
     public class LocalizationKeyCollection : ScriptableObject 
     {
         [SerializeField] List<LocalizationKey> keys = new List<LocalizationKey>();
@@ -33,31 +32,19 @@ namespace IsolarvLocalizationTool.Runtime
 
 #if UNITY_EDITOR
 
-        public void ValidateTable()
+        public void OnTableValidate(string newTableName)
         {
-            var tableName = name.Replace("_KeyCollection", "_TranslateTable");
-            var folder = $"{RuntimeUtils.PACKAGE_BASE_PATH}/Data/Translate Tables";
-            var path = folder + $"/{tableName}.asset";
+            LocalizationToolDebug.Log($"Localization keys {name} is validated and related to table {newTableName}.");
+        }
 
-            var asset = AssetDatabase.LoadAssetAtPath<TranslateTable>(path);
-            if (!asset)
+        public TranslateTable Table
+        {
+            get => relatedTable;
+            set
             {
-                asset = ScriptableObject.CreateInstance<TranslateTable>();
-                AssetDatabase.CreateAsset(asset, path);
-                EditorUtility.SetDirty(asset);
-                
-                relatedTable = asset;
+                relatedTable = value;
                 EditorUtility.SetDirty(this);
             }
-
-            relatedTable.SetRelatedKeys(this);
-            if (relatedTable != asset)
-            {
-                relatedTable = asset;
-                EditorUtility.SetDirty(this);
-            }
-            
-            LocalizationToolDebug.Log($"Localization keys {name} is validated and related to table {tableName}.");
         }
         
         public LocalizationKey GetKey(string key)
@@ -87,8 +74,6 @@ namespace IsolarvLocalizationTool.Runtime
             LocalizationToolDebug.LogError($"Localization key with id {key} not found.");
             return -1;
         }
-        
-        public TranslateTable GetTable() => relatedTable;
 
         public int keysCount => keys.Count;
         

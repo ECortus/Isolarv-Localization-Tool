@@ -57,7 +57,7 @@ namespace IsolarvLocalizationTool.Editor
                 _selectedCollection = loc.newValue as LocalizationKeyCollection;
                 if (_selectedCollection)
                 {
-                    _selectedTable = _selectedCollection.GetTable();
+                    _selectedTable = _selectedCollection.Table;
                 }
                 
                 UpdateTableView();
